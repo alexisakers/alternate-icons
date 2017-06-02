@@ -9,6 +9,7 @@ let package = Package(
         Target(name: "AlternateIcons", dependencies: ["AltKit"])
     ],
     dependencies: [
-        .Package(url: "https://github.com/JohnSundell/Files.git", majorVersion: 1)
+        .Package(url: "https://github.com/JohnSundell/Files.git", majorVersion: 1),
+        .Package(url: "https://github.com/JohnSundell/Unbox.git", majorVersion: 2)
     ]
 )

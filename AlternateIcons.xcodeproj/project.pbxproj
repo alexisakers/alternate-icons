@@ -7,171 +7,226 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E74BD911EE1D7F1003F5AE8 /* TestFixtures in CopyFiles */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* TestFixtures */; };
-		OBJ_30 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* Files.swift */; };
-		OBJ_37 /* BundleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* BundleIcon.swift */; };
-		OBJ_38 /* InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* InfoPlist.swift */; };
-		OBJ_40 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Files.framework */; };
-		OBJ_47 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* main.swift */; };
-		OBJ_49 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Files.framework */; };
-		OBJ_50 /* AltKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* AltKit.framework */; };
-		OBJ_58 /* InfoPlistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* InfoPlistTests.swift */; };
-		OBJ_60 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Files.framework */; };
-		OBJ_61 /* AltKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* AltKit.framework */; };
+		5E74BD9D1EE1DBBF003F5AE8 /* TestFixtures in CopyFiles */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* TestFixtures */; };
+		5E74BD9F1EE1DC51003F5AE8 /* AppIconSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BD9E1EE1DC51003F5AE8 /* AppIconSet.swift */; };
+		5E74BDA11EE1E4BE003F5AE8 /* AssetCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA01EE1E4BE003F5AE8 /* AssetCatalogTests.swift */; };
+		OBJ_34 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Files.swift */; };
+		OBJ_41 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Unbox.swift */; };
+		OBJ_48 /* AssetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AssetCatalog.swift */; };
+		OBJ_49 /* BundleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* BundleIcon.swift */; };
+		OBJ_50 /* InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* InfoPlist.swift */; };
+		OBJ_52 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Files.framework */; };
+		OBJ_53 /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Unbox.framework */; };
+		OBJ_61 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* main.swift */; };
+		OBJ_63 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Files.framework */; };
+		OBJ_64 /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Unbox.framework */; };
+		OBJ_65 /* AltKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* AltKit.framework */; };
+		OBJ_74 /* InfoPlistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* InfoPlistTests.swift */; };
+		OBJ_76 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Files.framework */; };
+		OBJ_77 /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Unbox.framework */; };
+		OBJ_78 /* AltKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* AltKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5E74BD8B1EE1D7E4003F5AE8 /* PBXContainerItemProxy */ = {
+		5E74BD941EE1DB69003F5AE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = OBJ_25;
+			remoteGlobalIDString = OBJ_29;
 			remoteInfo = Files;
 		};
-		5E74BD8C1EE1D7E4003F5AE8 /* PBXContainerItemProxy */ = {
+		5E74BD951EE1DB69003F5AE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = OBJ_25;
+			remoteGlobalIDString = OBJ_36;
+			remoteInfo = Unbox;
+		};
+		5E74BD961EE1DB69003F5AE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_29;
 			remoteInfo = Files;
 		};
-		5E74BD8D1EE1D7E4003F5AE8 /* PBXContainerItemProxy */ = {
+		5E74BD971EE1DB69003F5AE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = OBJ_32;
+			remoteGlobalIDString = OBJ_36;
+			remoteInfo = Unbox;
+		};
+		5E74BD981EE1DB69003F5AE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_43;
 			remoteInfo = AltKit;
 		};
-		5E74BD8E1EE1D7E4003F5AE8 /* PBXContainerItemProxy */ = {
+		5E74BD991EE1DB69003F5AE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = OBJ_25;
+			remoteGlobalIDString = OBJ_29;
 			remoteInfo = Files;
 		};
-		5E74BD8F1EE1D7E4003F5AE8 /* PBXContainerItemProxy */ = {
+		5E74BD9A1EE1DB69003F5AE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = OBJ_32;
+			remoteGlobalIDString = OBJ_36;
+			remoteInfo = Unbox;
+		};
+		5E74BD9B1EE1DB69003F5AE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_43;
 			remoteInfo = AltKit;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		5E74BD901EE1D7EE003F5AE8 /* CopyFiles */ = {
+		5E74BD9C1EE1DBBB003F5AE8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				5E74BD911EE1D7F1003F5AE8 /* TestFixtures in CopyFiles */,
+				5E74BD9D1EE1DBBF003F5AE8 /* TestFixtures in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		OBJ_10 /* InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPlist.swift; sourceTree = "<group>"; };
-		OBJ_12 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		OBJ_15 /* InfoPlistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPlistTests.swift; sourceTree = "<group>"; };
-		OBJ_16 /* TestFixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestFixtures; sourceTree = SOURCE_ROOT; };
-		OBJ_19 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
-		OBJ_21 /* Files.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Files.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_22 /* AltKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AltKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_23 /* AlternateIcons */ = {isa = PBXFileReference; lastKnownFileType = text; path = AlternateIcons; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_24 /* AltKitTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = AltKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E74BD9E1EE1DC51003F5AE8 /* AppIconSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIconSet.swift; sourceTree = "<group>"; };
+		5E74BDA01EE1E4BE003F5AE8 /* AssetCatalogTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCatalogTests.swift; sourceTree = "<group>"; };
+		OBJ_10 /* BundleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleIcon.swift; sourceTree = "<group>"; };
+		OBJ_11 /* InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPlist.swift; sourceTree = "<group>"; };
+		OBJ_13 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		OBJ_16 /* InfoPlistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPlistTests.swift; sourceTree = "<group>"; };
+		OBJ_17 /* TestFixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestFixtures; sourceTree = SOURCE_ROOT; };
+		OBJ_20 /* Unbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unbox.swift; sourceTree = "<group>"; };
+		OBJ_22 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
+		OBJ_24 /* Files.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Files.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_25 /* Unbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Unbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_26 /* AltKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AltKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_27 /* AlternateIcons */ = {isa = PBXFileReference; lastKnownFileType = text; path = AlternateIcons; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_28 /* AltKitTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = AltKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_9 /* BundleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleIcon.swift; sourceTree = "<group>"; };
+		OBJ_9 /* AssetCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCatalog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		OBJ_31 /* Frameworks */ = {
+		OBJ_35 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_39 /* Frameworks */ = {
+		OBJ_42 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_40 /* Files.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_48 /* Frameworks */ = {
+		OBJ_51 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_49 /* Files.framework in Frameworks */,
-				OBJ_50 /* AltKit.framework in Frameworks */,
+				OBJ_52 /* Files.framework in Frameworks */,
+				OBJ_53 /* Unbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_59 /* Frameworks */ = {
+		OBJ_62 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_60 /* Files.framework in Frameworks */,
-				OBJ_61 /* AltKit.framework in Frameworks */,
+				OBJ_63 /* Files.framework in Frameworks */,
+				OBJ_64 /* Unbox.framework in Frameworks */,
+				OBJ_65 /* AltKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_76 /* Files.framework in Frameworks */,
+				OBJ_77 /* Unbox.framework in Frameworks */,
+				OBJ_78 /* AltKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		OBJ_11 /* AlternateIcons */ = {
+		OBJ_12 /* AlternateIcons */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_12 /* main.swift */,
+				OBJ_13 /* main.swift */,
 			);
 			name = AlternateIcons;
 			path = Sources/AlternateIcons;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_13 /* Tests */ = {
+		OBJ_14 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_14 /* AltKitTests */,
+				OBJ_15 /* AltKitTests */,
 			);
 			name = Tests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_14 /* AltKitTests */ = {
+		OBJ_15 /* AltKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_15 /* InfoPlistTests.swift */,
+				OBJ_16 /* InfoPlistTests.swift */,
+				5E74BDA01EE1E4BE003F5AE8 /* AssetCatalogTests.swift */,
 			);
 			name = AltKitTests;
 			path = Tests/AltKitTests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_17 /* Dependencies */ = {
+		OBJ_18 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_18 /* Files 1.8.0 */,
+				OBJ_19 /* Unbox 2.4.0 */,
+				OBJ_21 /* Files 1.8.0 */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
-		OBJ_18 /* Files 1.8.0 */ = {
+		OBJ_19 /* Unbox 2.4.0 */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_19 /* Files.swift */,
+				OBJ_20 /* Unbox.swift */,
+			);
+			name = "Unbox 2.4.0";
+			path = ".build/checkouts/Unbox.git-7328032665522304260/Sources";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_21 /* Files 1.8.0 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_22 /* Files.swift */,
 			);
 			name = "Files 1.8.0";
 			path = ".build/checkouts/Files.git-6739420172119258925/Sources";
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_20 /* Products */ = {
+		OBJ_23 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_21 /* Files.framework */,
-				OBJ_22 /* AltKit.framework */,
-				OBJ_23 /* AlternateIcons */,
-				OBJ_24 /* AltKitTests.xctest */,
+				OBJ_24 /* Files.framework */,
+				OBJ_25 /* Unbox.framework */,
+				OBJ_26 /* AltKit.framework */,
+				OBJ_27 /* AlternateIcons */,
+				OBJ_28 /* AltKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -181,10 +236,10 @@
 			children = (
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
-				OBJ_13 /* Tests */,
-				OBJ_16 /* TestFixtures */,
-				OBJ_17 /* Dependencies */,
-				OBJ_20 /* Products */,
+				OBJ_14 /* Tests */,
+				OBJ_17 /* TestFixtures */,
+				OBJ_18 /* Dependencies */,
+				OBJ_23 /* Products */,
 			);
 			name = "";
 			sourceTree = "<group>";
@@ -193,7 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_8 /* AltKit */,
-				OBJ_11 /* AlternateIcons */,
+				OBJ_12 /* AlternateIcons */,
 			);
 			name = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -201,8 +256,10 @@
 		OBJ_8 /* AltKit */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* BundleIcon.swift */,
-				OBJ_10 /* InfoPlist.swift */,
+				OBJ_9 /* AssetCatalog.swift */,
+				5E74BD9E1EE1DC51003F5AE8 /* AppIconSet.swift */,
+				OBJ_10 /* BundleIcon.swift */,
+				OBJ_11 /* InfoPlist.swift */,
 			);
 			name = AltKit;
 			path = Sources/AltKit;
@@ -211,12 +268,12 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		OBJ_25 /* Files */ = {
+		OBJ_29 /* Files */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_26 /* Build configuration list for PBXNativeTarget "Files" */;
+			buildConfigurationList = OBJ_30 /* Build configuration list for PBXNativeTarget "Files" */;
 			buildPhases = (
-				OBJ_29 /* Sources */,
-				OBJ_31 /* Frameworks */,
+				OBJ_33 /* Sources */,
+				OBJ_35 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -224,61 +281,80 @@
 			);
 			name = Files;
 			productName = Files;
-			productReference = OBJ_21 /* Files.framework */;
+			productReference = OBJ_24 /* Files.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		OBJ_32 /* AltKit */ = {
+		OBJ_36 /* Unbox */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_33 /* Build configuration list for PBXNativeTarget "AltKit" */;
+			buildConfigurationList = OBJ_37 /* Build configuration list for PBXNativeTarget "Unbox" */;
 			buildPhases = (
-				OBJ_36 /* Sources */,
-				OBJ_39 /* Frameworks */,
+				OBJ_40 /* Sources */,
+				OBJ_42 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_41 /* PBXTargetDependency */,
+			);
+			name = Unbox;
+			productName = Unbox;
+			productReference = OBJ_25 /* Unbox.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		OBJ_43 /* AltKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_44 /* Build configuration list for PBXNativeTarget "AltKit" */;
+			buildPhases = (
+				OBJ_47 /* Sources */,
+				OBJ_51 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_54 /* PBXTargetDependency */,
+				OBJ_55 /* PBXTargetDependency */,
 			);
 			name = AltKit;
 			productName = AltKit;
-			productReference = OBJ_22 /* AltKit.framework */;
+			productReference = OBJ_26 /* AltKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		OBJ_42 /* AlternateIcons */ = {
+		OBJ_56 /* AlternateIcons */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_43 /* Build configuration list for PBXNativeTarget "AlternateIcons" */;
+			buildConfigurationList = OBJ_57 /* Build configuration list for PBXNativeTarget "AlternateIcons" */;
 			buildPhases = (
-				OBJ_46 /* Sources */,
-				OBJ_48 /* Frameworks */,
+				OBJ_60 /* Sources */,
+				OBJ_62 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_51 /* PBXTargetDependency */,
-				OBJ_52 /* PBXTargetDependency */,
+				OBJ_66 /* PBXTargetDependency */,
+				OBJ_67 /* PBXTargetDependency */,
+				OBJ_68 /* PBXTargetDependency */,
 			);
 			name = AlternateIcons;
 			productName = AlternateIcons;
-			productReference = OBJ_23 /* AlternateIcons */;
+			productReference = OBJ_27 /* AlternateIcons */;
 			productType = "com.apple.product-type.tool";
 		};
-		OBJ_53 /* AltKitTests */ = {
+		OBJ_69 /* AltKitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_54 /* Build configuration list for PBXNativeTarget "AltKitTests" */;
+			buildConfigurationList = OBJ_70 /* Build configuration list for PBXNativeTarget "AltKitTests" */;
 			buildPhases = (
-				OBJ_57 /* Sources */,
-				OBJ_59 /* Frameworks */,
-				5E74BD901EE1D7EE003F5AE8 /* CopyFiles */,
+				OBJ_73 /* Sources */,
+				OBJ_75 /* Frameworks */,
+				5E74BD9C1EE1DBBB003F5AE8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_62 /* PBXTargetDependency */,
-				OBJ_63 /* PBXTargetDependency */,
+				OBJ_79 /* PBXTargetDependency */,
+				OBJ_80 /* PBXTargetDependency */,
+				OBJ_81 /* PBXTargetDependency */,
 			);
 			name = AltKitTests;
 			productName = AltKitTests;
-			productReference = OBJ_24 /* AltKitTests.xctest */;
+			productReference = OBJ_28 /* AltKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -297,125 +373,110 @@
 				en,
 			);
 			mainGroup = OBJ_5 /*  */;
-			productRefGroup = OBJ_20 /* Products */;
+			productRefGroup = OBJ_23 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				OBJ_25 /* Files */,
-				OBJ_32 /* AltKit */,
-				OBJ_42 /* AlternateIcons */,
-				OBJ_53 /* AltKitTests */,
+				OBJ_29 /* Files */,
+				OBJ_36 /* Unbox */,
+				OBJ_43 /* AltKit */,
+				OBJ_56 /* AlternateIcons */,
+				OBJ_69 /* AltKitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		OBJ_29 /* Sources */ = {
+		OBJ_33 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_30 /* Files.swift in Sources */,
+				OBJ_34 /* Files.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_36 /* Sources */ = {
+		OBJ_40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_37 /* BundleIcon.swift in Sources */,
-				OBJ_38 /* InfoPlist.swift in Sources */,
+				OBJ_41 /* Unbox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_46 /* Sources */ = {
+		OBJ_47 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_47 /* main.swift in Sources */,
+				OBJ_48 /* AssetCatalog.swift in Sources */,
+				5E74BD9F1EE1DC51003F5AE8 /* AppIconSet.swift in Sources */,
+				OBJ_49 /* BundleIcon.swift in Sources */,
+				OBJ_50 /* InfoPlist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_57 /* Sources */ = {
+		OBJ_60 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_58 /* InfoPlistTests.swift in Sources */,
+				OBJ_61 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				5E74BDA11EE1E4BE003F5AE8 /* AssetCatalogTests.swift in Sources */,
+				OBJ_74 /* InfoPlistTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		OBJ_41 /* PBXTargetDependency */ = {
+		OBJ_54 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = OBJ_25 /* Files */;
-			targetProxy = 5E74BD8B1EE1D7E4003F5AE8 /* PBXContainerItemProxy */;
+			target = OBJ_29 /* Files */;
+			targetProxy = 5E74BD941EE1DB69003F5AE8 /* PBXContainerItemProxy */;
 		};
-		OBJ_51 /* PBXTargetDependency */ = {
+		OBJ_55 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = OBJ_25 /* Files */;
-			targetProxy = 5E74BD8C1EE1D7E4003F5AE8 /* PBXContainerItemProxy */;
+			target = OBJ_36 /* Unbox */;
+			targetProxy = 5E74BD951EE1DB69003F5AE8 /* PBXContainerItemProxy */;
 		};
-		OBJ_52 /* PBXTargetDependency */ = {
+		OBJ_66 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = OBJ_32 /* AltKit */;
-			targetProxy = 5E74BD8D1EE1D7E4003F5AE8 /* PBXContainerItemProxy */;
+			target = OBJ_29 /* Files */;
+			targetProxy = 5E74BD961EE1DB69003F5AE8 /* PBXContainerItemProxy */;
 		};
-		OBJ_62 /* PBXTargetDependency */ = {
+		OBJ_67 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = OBJ_25 /* Files */;
-			targetProxy = 5E74BD8E1EE1D7E4003F5AE8 /* PBXContainerItemProxy */;
+			target = OBJ_36 /* Unbox */;
+			targetProxy = 5E74BD971EE1DB69003F5AE8 /* PBXContainerItemProxy */;
 		};
-		OBJ_63 /* PBXTargetDependency */ = {
+		OBJ_68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = OBJ_32 /* AltKit */;
-			targetProxy = 5E74BD8F1EE1D7E4003F5AE8 /* PBXContainerItemProxy */;
+			target = OBJ_43 /* AltKit */;
+			targetProxy = 5E74BD981EE1DB69003F5AE8 /* PBXContainerItemProxy */;
+		};
+		OBJ_79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = OBJ_29 /* Files */;
+			targetProxy = 5E74BD991EE1DB69003F5AE8 /* PBXContainerItemProxy */;
+		};
+		OBJ_80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = OBJ_36 /* Unbox */;
+			targetProxy = 5E74BD9A1EE1DB69003F5AE8 /* PBXContainerItemProxy */;
+		};
+		OBJ_81 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = OBJ_43 /* AltKit */;
+			targetProxy = 5E74BD9B1EE1DB69003F5AE8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		OBJ_27 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = AlternateIcons.xcodeproj/Files_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Files;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				TARGET_NAME = Files;
-			};
-			name = Debug;
-		};
-		OBJ_28 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = AlternateIcons.xcodeproj/Files_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Files;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				TARGET_NAME = Files;
-			};
-			name = Release;
-		};
 		OBJ_3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -439,7 +500,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_34 /* Debug */ = {
+		OBJ_31 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -448,19 +509,19 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = AlternateIcons.xcodeproj/AltKit_Info.plist;
+				INFOPLIST_FILE = AlternateIcons.xcodeproj/Files_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = AltKit;
+				PRODUCT_BUNDLE_IDENTIFIER = Files;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				TARGET_NAME = AltKit;
+				TARGET_NAME = Files;
 			};
 			name = Debug;
 		};
-		OBJ_35 /* Release */ = {
+		OBJ_32 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -469,15 +530,57 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = AlternateIcons.xcodeproj/AltKit_Info.plist;
+				INFOPLIST_FILE = AlternateIcons.xcodeproj/Files_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = AltKit;
+				PRODUCT_BUNDLE_IDENTIFIER = Files;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				TARGET_NAME = AltKit;
+				TARGET_NAME = Files;
+			};
+			name = Release;
+		};
+		OBJ_38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = AlternateIcons.xcodeproj/Unbox_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Unbox;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGET_NAME = Unbox;
+			};
+			name = Debug;
+		};
+		OBJ_39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = AlternateIcons.xcodeproj/Unbox_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Unbox;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGET_NAME = Unbox;
 			};
 			name = Release;
 		};
@@ -502,7 +605,49 @@
 			};
 			name = Release;
 		};
-		OBJ_44 /* Debug */ = {
+		OBJ_45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = AlternateIcons.xcodeproj/AltKit_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = AltKit;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGET_NAME = AltKit;
+			};
+			name = Debug;
+		};
+		OBJ_46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = AlternateIcons.xcodeproj/AltKit_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = AltKit;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGET_NAME = AltKit;
+			};
+			name = Release;
+		};
+		OBJ_58 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
@@ -520,7 +665,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_45 /* Release */ = {
+		OBJ_59 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
@@ -538,7 +683,7 @@
 			};
 			name = Release;
 		};
-		OBJ_55 /* Debug */ = {
+		OBJ_71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -555,7 +700,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_56 /* Release */ = {
+		OBJ_72 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -584,38 +729,47 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		OBJ_26 /* Build configuration list for PBXNativeTarget "Files" */ = {
+		OBJ_30 /* Build configuration list for PBXNativeTarget "Files" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_27 /* Debug */,
-				OBJ_28 /* Release */,
+				OBJ_31 /* Debug */,
+				OBJ_32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		OBJ_33 /* Build configuration list for PBXNativeTarget "AltKit" */ = {
+		OBJ_37 /* Build configuration list for PBXNativeTarget "Unbox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_34 /* Debug */,
-				OBJ_35 /* Release */,
+				OBJ_38 /* Debug */,
+				OBJ_39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		OBJ_43 /* Build configuration list for PBXNativeTarget "AlternateIcons" */ = {
+		OBJ_44 /* Build configuration list for PBXNativeTarget "AltKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_44 /* Debug */,
-				OBJ_45 /* Release */,
+				OBJ_45 /* Debug */,
+				OBJ_46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		OBJ_54 /* Build configuration list for PBXNativeTarget "AltKitTests" */ = {
+		OBJ_57 /* Build configuration list for PBXNativeTarget "AlternateIcons" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_55 /* Debug */,
-				OBJ_56 /* Release */,
+				OBJ_58 /* Debug */,
+				OBJ_59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_70 /* Build configuration list for PBXNativeTarget "AltKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_71 /* Debug */,
+				OBJ_72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

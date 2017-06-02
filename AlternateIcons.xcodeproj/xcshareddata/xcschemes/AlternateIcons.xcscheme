@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_25"
+               BlueprintIdentifier = "OBJ_29"
                BuildableName = "Files.framework"
                BlueprintName = "Files"
                ReferencedContainer = "container:AlternateIcons.xcodeproj">
@@ -28,7 +28,21 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_32"
+               BlueprintIdentifier = "OBJ_36"
+               BuildableName = "Unbox.framework"
+               BlueprintName = "Unbox"
+               ReferencedContainer = "container:AlternateIcons.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "OBJ_43"
                BuildableName = "AltKit.framework"
                BlueprintName = "AltKit"
                ReferencedContainer = "container:AlternateIcons.xcodeproj">
@@ -42,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_42"
+               BlueprintIdentifier = "OBJ_56"
                BuildableName = "AlternateIcons"
                BlueprintName = "AlternateIcons"
                ReferencedContainer = "container:AlternateIcons.xcodeproj">
@@ -61,7 +75,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_53"
+               BlueprintIdentifier = "OBJ_69"
                BuildableName = "AltKitTests.xctest"
                BlueprintName = "AltKitTests"
                ReferencedContainer = "container:AlternateIcons.xcodeproj">
@@ -84,7 +98,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OBJ_25"
+            BlueprintIdentifier = "OBJ_29"
             BuildableName = "Files.framework"
             BlueprintName = "Files"
             ReferencedContainer = "container:AlternateIcons.xcodeproj">
