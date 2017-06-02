@@ -10,6 +10,7 @@
 		5E74BD9D1EE1DBBF003F5AE8 /* TestFixtures in CopyFiles */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* TestFixtures */; };
 		5E74BD9F1EE1DC51003F5AE8 /* AppIconSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BD9E1EE1DC51003F5AE8 /* AppIconSet.swift */; };
 		5E74BDA11EE1E4BE003F5AE8 /* AssetCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA01EE1E4BE003F5AE8 /* AssetCatalogTests.swift */; };
+		5E74BDA41EE1F582003F5AE8 /* Xcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA31EE1F582003F5AE8 /* Xcode.swift */; };
 		OBJ_34 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Files.swift */; };
 		OBJ_41 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Unbox.swift */; };
 		OBJ_48 /* AssetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AssetCatalog.swift */; };
@@ -102,6 +103,7 @@
 /* Begin PBXFileReference section */
 		5E74BD9E1EE1DC51003F5AE8 /* AppIconSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIconSet.swift; sourceTree = "<group>"; };
 		5E74BDA01EE1E4BE003F5AE8 /* AssetCatalogTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCatalogTests.swift; sourceTree = "<group>"; };
+		5E74BDA31EE1F582003F5AE8 /* Xcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Xcode.swift; sourceTree = "<group>"; };
 		OBJ_10 /* BundleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleIcon.swift; sourceTree = "<group>"; };
 		OBJ_11 /* InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPlist.swift; sourceTree = "<group>"; };
 		OBJ_13 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				5E74BD9E1EE1DC51003F5AE8 /* AppIconSet.swift */,
 				OBJ_10 /* BundleIcon.swift */,
 				OBJ_11 /* InfoPlist.swift */,
+				5E74BDA31EE1F582003F5AE8 /* Xcode.swift */,
 			);
 			name = AltKit;
 			path = Sources/AltKit;
@@ -409,6 +412,7 @@
 			files = (
 				OBJ_48 /* AssetCatalog.swift in Sources */,
 				5E74BD9F1EE1DC51003F5AE8 /* AppIconSet.swift in Sources */,
+				5E74BDA41EE1F582003F5AE8 /* Xcode.swift in Sources */,
 				OBJ_49 /* BundleIcon.swift in Sources */,
 				OBJ_50 /* InfoPlist.swift in Sources */,
 			);
