@@ -141,7 +141,9 @@ extension String {
 /// Combines an array of arrays into a single array.
 ///
 
-func merge<Base>(_ arrays: @autoclosure [[Base]]) -> [Base] {
+func merge<Base>(_ arraysToMerge: @autoclosure () -> [[Base]]) -> [Base] {
+
+    let arrays = arraysToMerge()
 
     return arrays.reduce([Base]()) {
         result, next in
