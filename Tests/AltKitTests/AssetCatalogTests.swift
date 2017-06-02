@@ -44,7 +44,7 @@ class AssetCatalogTests: XCTestCase {
 
         let iconSets = try catalog.listAppIconSets()
 
-        let expectedNames = ["Dark.", "Light", "Sombre"]
+        let expectedNames = ["AppIcon", "Light", "Sombre"]
         let iconSetNames = iconSets.map { $0.name }.sorted()
 
         XCTAssertEqual(iconSetNames, expectedNames)

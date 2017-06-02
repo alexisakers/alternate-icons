@@ -35,7 +35,7 @@ enum AlternateIcons {
     /// Reads the arguments from the current context.
     ///
 
-    static func readArguments() throws -> Arguments {
+    static func readArguments(resolvingAgainst basePath: String = "") throws -> Arguments {
 
         // 1) Info Plist
 
@@ -43,7 +43,7 @@ enum AlternateIcons {
             throw NSError() // noInfoPlist
         }
 
-        let infoPlistFile = try File(path: infoPlistPath)
+        let infoPlistFile = try File(path: basePath + infoPlistPath)
 
         // 2) Asset Catalog
 
@@ -56,20 +56,17 @@ enum AlternateIcons {
         }
 
         let assetCatalogPath = scriptInputFiles[0]
-        let assetCatalogFolder = try Folder(path: assetCatalogPath)
+        let assetCatalogFolder = try Folder(path: basePath + assetCatalogPath)
 
         // 3) App Bundle
 
-        guard let buildPath = Xcode.buildProductsDir else {
-            throw NSError() // noAppBundle
-        }
+        let buildPath = Xcode.buildProductsDir ?? basePath
 
         guard let contentsDir = Xcode.contentsFolderPath else {
             throw NSError() // noAppBundle
         }
 
-        let pathJoiner = buildPath.hasPrefix("/") ? "" : "/"
-        let appBundlePath = buildPath + pathJoiner + contentsDir
+        let appBundlePath = buildPath.appending(pathComponent: contentsDir)
 
         let infoPlist = try InfoPlist(file: infoPlistFile)
         let assetCatalog = AssetCatalog(folder: assetCatalogFolder)
@@ -131,8 +128,14 @@ extension String {
     ///
 
     func appending(pathComponent: String) -> String {
+
+        guard !isEmpty else {
+            return self
+        }
+
         let pathJoiner = hasSuffix("/") ? "" : "/"
         return self + pathJoiner + pathComponent
+
     }
 
 }

@@ -111,8 +111,23 @@
       </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "INFO"
-            value = ""
+            key = "CONTENTS_FOLDER_PATH"
+            value = "AppBundle"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "INFOPLIST_FILE"
+            value = "NoAlternateInfo.plist"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "SCRIPT_INPUT_FILE_COUNT"
+            value = "1"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "SCRIPT_INPUT_FILE_0"
+            value = "Images.xcassets"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
