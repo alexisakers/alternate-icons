@@ -81,4 +81,22 @@ class RunTests: XCTestCase {
 
     }
 
+    ///
+    /// Tests running the script.
+    ///
+
+    func testRun() throws {
+
+        let expectedIcons = [
+            BundleIcon(name: nil, filePrefix: "AppIcon"),
+            BundleIcon(name: "Light", filePrefix: "Light"),
+            BundleIcon(name: "Sombre", filePrefix: "Sombre")
+        ]
+
+        try AlternateIcons.run(with: arguments)
+
+
+
+    }
+
 }

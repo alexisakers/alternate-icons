@@ -84,7 +84,7 @@ class AppIconSet {
             let designationIdiom = image.idiom == "ipad" ? "~ipad" : ""
             let destinationScale = image.scale != "1x" ? "@" + image.scale : ""
 
-            let destination = name + image.size + destinationScale + designationIdiom
+            let destination = name + image.size + destinationScale + designationIdiom + ".png"
 
             let item = (source, destination)
             files.append(item)
