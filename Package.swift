@@ -7,5 +7,8 @@ let package = Package(
     targets: [
         Target(name: "AltKit"),
         Target(name: "AlternateIcons", dependencies: ["AltKit"])
+    ],
+    dependencies: [
+        .Package(url: "https://github.com/JohnSundell/Files.git", majorVersion: 1)
     ]
 )
