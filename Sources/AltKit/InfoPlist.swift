@@ -161,3 +161,14 @@ extension InfoPlist {
     static var iconFilesKey = "CFBundleIconFiles"
 
 }
+
+
+// MARK: - InfoPlist + Equatable
+
+extension InfoPlist: Equatable {
+
+    static func == (lhs: InfoPlist, rhs: InfoPlist) -> Bool {
+        return lhs.file == rhs.file
+    }
+
+}

@@ -5,7 +5,7 @@ import Files
 /// Represents an Xcode asset catalog.
 ///
 
-struct AssetCatalog {
+struct AssetCatalog: Equatable {
 
     /// The catalog folder.
     var folder: Folder
@@ -22,6 +22,10 @@ struct AssetCatalog {
 
         return Set<AppIconSet>(appIconSets)
 
+    }
+
+    static func == (lhs: AssetCatalog, rhs: AssetCatalog) -> Bool {
+        return lhs.folder == rhs.folder
     }
 
 }

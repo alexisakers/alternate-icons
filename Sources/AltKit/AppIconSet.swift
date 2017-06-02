@@ -35,11 +35,11 @@ class AppIconSet {
     let folder: Folder
 
     /// The variants of the icon.
-    let images: [Image]
+    let images: Set<Image>
 
     /// The name of the icon set.
     var name: String {
-        return folder.name
+        return folder.nameExcludingExtension
     }
     
 
@@ -55,9 +55,43 @@ class AppIconSet {
 
         let contentsJSON = try folder.file(named: "Contents.json")
         let contentsData = try contentsJSON.read()
+        let imagesArray: [Image] = try unbox(data: contentsData, atKeyPath: "images")
 
-        self.images = try unbox(data: contentsData, atKeyPath: "images")
+        self.images = Set<Image>(imagesArray)
         self.folder = folder
+
+    }
+
+
+    // MARK: - Files
+
+    ///
+    /// Enumerates the image files.
+    ///
+    /// Returns the source file and the name of the destination file in the app bundle.
+    ///
+
+    func enumerateImageFiles() -> [(source: File, destination: String)] {
+
+        var files = [(source: File, destination: String)]()
+
+        for image in images {
+
+            guard let source = try? folder.file(named: image.filename) else {
+                continue
+            }
+
+            let designationIdiom = image.idiom == "ipad" ? "~ipad" : ""
+            let destinationScale = image.scale != "1x" ? "@" + image.scale : ""
+
+            let destination = name + image.size + destinationScale + designationIdiom
+
+            let item = (source, destination)
+            files.append(item)
+
+        }
+
+        return files
 
     }
 
