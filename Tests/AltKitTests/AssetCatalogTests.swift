@@ -1,7 +1,7 @@
 import XCTest
 import Foundation
-@testable import AltKit
 import Files
+@testable import AltKit
 
 ///
 /// Tests the Asset Catalog parser.
