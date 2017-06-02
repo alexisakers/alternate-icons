@@ -3,5 +3,9 @@
 import PackageDescription
 
 let package = Package(
-    name: "alternate-icons"
+    name: "AlternateIcons",
+    targets: [
+        Target(name: "AltKit"),
+        Target(name: "AlternateIcons", dependencies: ["AltKit"])
+    ]
 )
