@@ -511,7 +511,7 @@
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -616,7 +616,7 @@
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
