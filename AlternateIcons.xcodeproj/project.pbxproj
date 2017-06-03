@@ -13,6 +13,8 @@
 		5E74BDA41EE1F582003F5AE8 /* Xcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA31EE1F582003F5AE8 /* Xcode.swift */; };
 		5E74BDA61EE1FD36003F5AE8 /* AlternateIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA51EE1FD36003F5AE8 /* AlternateIcons.swift */; };
 		5E74BDA81EE20CBB003F5AE8 /* RunTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA71EE20CBB003F5AE8 /* RunTests.swift */; };
+		5E74BDAA1EE2915C003F5AE8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA91EE2915C003F5AE8 /* Error.swift */; };
+		5E74BDAE1EE2946E003F5AE8 /* FailableTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDAD1EE2946E003F5AE8 /* FailableTestCase.swift */; };
 		OBJ_34 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Files.swift */; };
 		OBJ_41 /* Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Unbox.swift */; };
 		OBJ_48 /* AssetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AssetCatalog.swift */; };
@@ -108,6 +110,8 @@
 		5E74BDA31EE1F582003F5AE8 /* Xcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Xcode.swift; sourceTree = "<group>"; };
 		5E74BDA51EE1FD36003F5AE8 /* AlternateIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlternateIcons.swift; sourceTree = "<group>"; };
 		5E74BDA71EE20CBB003F5AE8 /* RunTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTests.swift; sourceTree = "<group>"; };
+		5E74BDA91EE2915C003F5AE8 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		5E74BDAD1EE2946E003F5AE8 /* FailableTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailableTestCase.swift; sourceTree = "<group>"; };
 		OBJ_10 /* BundleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleIcon.swift; sourceTree = "<group>"; };
 		OBJ_11 /* InfoPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPlist.swift; sourceTree = "<group>"; };
 		OBJ_13 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 		OBJ_15 /* AltKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				5E74BDAD1EE2946E003F5AE8 /* FailableTestCase.swift */,
 				OBJ_16 /* InfoPlistTests.swift */,
 				5E74BDA01EE1E4BE003F5AE8 /* AssetCatalogTests.swift */,
 				5E74BDA71EE20CBB003F5AE8 /* RunTests.swift */,
@@ -269,6 +274,7 @@
 				OBJ_10 /* BundleIcon.swift */,
 				OBJ_11 /* InfoPlist.swift */,
 				5E74BDA31EE1F582003F5AE8 /* Xcode.swift */,
+				5E74BDA91EE2915C003F5AE8 /* Error.swift */,
 			);
 			name = AltKit;
 			path = Sources/AltKit;
@@ -421,6 +427,7 @@
 				5E74BDA41EE1F582003F5AE8 /* Xcode.swift in Sources */,
 				5E74BDA61EE1FD36003F5AE8 /* AlternateIcons.swift in Sources */,
 				OBJ_49 /* BundleIcon.swift in Sources */,
+				5E74BDAA1EE2915C003F5AE8 /* Error.swift in Sources */,
 				OBJ_50 /* InfoPlist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,6 +445,7 @@
 			buildActionMask = 0;
 			files = (
 				5E74BDA11EE1E4BE003F5AE8 /* AssetCatalogTests.swift in Sources */,
+				5E74BDAE1EE2946E003F5AE8 /* FailableTestCase.swift in Sources */,
 				5E74BDA81EE20CBB003F5AE8 /* RunTests.swift in Sources */,
 				OBJ_74 /* InfoPlistTests.swift in Sources */,
 			);

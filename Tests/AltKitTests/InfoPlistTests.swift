@@ -7,7 +7,7 @@ import Files
 /// Tests the InfoPlist wrapper.
 ///
 
-class InfoPlistTests: XCTestCase {
+class InfoPlistTests: FailableTestCase {
 
     /// The file containing valid alternate icons.
     var alternateIconsInfo: InfoPlist!

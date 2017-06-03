@@ -7,7 +7,7 @@ import Files
 /// Tests the script execution.
 ///
 
-class RunTests: XCTestCase {
+class RunTests: FailableTestCase {
 
     /// The arguments to use to test the script.
     var arguments: AlternateIcons.Arguments!
@@ -32,8 +32,6 @@ class RunTests: XCTestCase {
 
         do {
 
-            try FileManager.default.createDirectory(atPath: appBundlePath, withIntermediateDirectories: false, attributes: nil)
-
             let infoPlistFile = try File(path: infoPlistPath)
             let catalogFolder = try Folder(path: catalogPath)
             let appBundleFolder = try Folder(path: appBundlePath)
@@ -45,7 +43,6 @@ class RunTests: XCTestCase {
             arguments = AlternateIcons.Arguments(infoPlist: infoPlist, assetCatalog: catalog, appBundle: appBundleFolder)
 
         } catch {
-            dump(error)
             XCTFail("Could not set up")
         }
 
@@ -54,11 +51,16 @@ class RunTests: XCTestCase {
     override func tearDown() {
 
         do {
-            print(arguments)
-            try arguments.appBundle.delete()
+
+            for file in arguments.appBundle.files {
+                try file.delete()
+            }
+
             try arguments.infoPlist.file.write(data: initialInfoPlistData)
+
             arguments = nil
             basePath = nil
+
         } catch {
             XCTFail("Could not clean up.")
         }
@@ -87,15 +89,39 @@ class RunTests: XCTestCase {
 
     func testRun() throws {
 
-        let expectedIcons = [
-            BundleIcon(name: nil, filePrefix: "AppIcon"),
+        // 1) Run the script
+
+        let expectedPrimaryIcon = BundleIcon(name: nil, filePrefix: "AppIcon")
+
+        let expectedAlternateIcons: Set<BundleIcon> = [
             BundleIcon(name: "Light", filePrefix: "Light"),
             BundleIcon(name: "Sombre", filePrefix: "Sombre")
         ]
 
         try AlternateIcons.run(with: arguments)
 
+        // 2) Verify Info.plist
 
+        let infoPlistPath = basePath + "NoAlternateInfo.plist"
+        let infoPlistFile = try File(path: infoPlistPath)
+        let infoPlist = try InfoPlist(file: infoPlistFile)
+
+        guard let iconsInInfoPlistAfterRun = infoPlist.parseIcons() else {
+            XCTFail("Icons section not found in Info.plist")
+            return
+        }
+
+        XCTAssertEqual(iconsInInfoPlistAfterRun.primaryIcon, expectedPrimaryIcon)
+        XCTAssertEqual(iconsInInfoPlistAfterRun.alternateIcons, expectedAlternateIcons)
+
+        // 3) Verifies the copied files
+
+        let iconFileNames = try arguments.assetCatalog.listAppIconSets().map { $0.enumerateImageFiles().map { $0.destination } }
+        let expectedIconFiles = merge(iconFileNames)
+
+        for expectedIconFile in expectedIconFiles {
+            XCTAssertTrue(arguments.appBundle.containsFile(named: expectedIconFile), "The '\(expectedIconFile)' file wasn't copied")
+        }
 
     }
 

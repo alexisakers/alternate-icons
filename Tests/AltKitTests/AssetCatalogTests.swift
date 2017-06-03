@@ -7,7 +7,7 @@ import Files
 /// Tests the Asset Catalog parser.
 ///
 
-class AssetCatalogTests: XCTestCase {
+class AssetCatalogTests: FailableTestCase {
 
     /// The asset catalog.
     var catalog: AssetCatalog!

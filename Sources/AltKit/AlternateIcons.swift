@@ -40,7 +40,7 @@ enum AlternateIcons {
         // 1) Info Plist
 
         guard let infoPlistPath = Xcode.infoPlistFile else {
-            throw NSError() // noInfoPlist
+            throw AltError.noInfoPlist
         }
 
         let infoPlistFile = try File(path: basePath + infoPlistPath)
@@ -48,11 +48,11 @@ enum AlternateIcons {
         // 2) Asset Catalog
 
         guard let scriptInputFiles = Xcode.scriptInputFiles else {
-            throw NSError() // noAssetCatalog
+            throw AltError.noAssetCatalog
         }
 
         guard scriptInputFiles.count > 0 else {
-            throw NSError() // noAssetCatalog
+            throw AltError.noAssetCatalog
         }
 
         let assetCatalogPath = scriptInputFiles[0]
@@ -63,7 +63,7 @@ enum AlternateIcons {
         let buildPath = Xcode.buildProductsDir ?? basePath
 
         guard let contentsDir = Xcode.contentsFolderPath else {
-            throw NSError() // noAppBundle
+            throw AltError.noAppBundle
         }
 
         let appBundlePath = buildPath.appending(pathComponent: contentsDir)
@@ -72,7 +72,9 @@ enum AlternateIcons {
         let assetCatalog = AssetCatalog(folder: assetCatalogFolder)
         let appBundle = try Folder(path: appBundlePath)
 
-        return Arguments(infoPlist: infoPlist, assetCatalog: assetCatalog, appBundle: appBundle)
+        return Arguments(infoPlist: infoPlist,
+                         assetCatalog: assetCatalog,
+                         appBundle: appBundle)
 
     }
 
@@ -86,8 +88,8 @@ enum AlternateIcons {
 
         var appIconSets = try arguments.assetCatalog.listAppIconSets()
 
-        guard let primaryIndex = appIconSets.index(where: { $0.name == "AppIcon.appiconset" }) else {
-            throw NSError() // noPrimary
+        guard let primaryIndex = appIconSets.index(where: { $0.name == "AppIcon" }) else {
+            throw AltError.noPrimaryIconSet
         }
 
         let primaryIconSet = appIconSets.remove(at: primaryIndex)
@@ -110,8 +112,8 @@ enum AlternateIcons {
         iconImages.append(contentsOf: alternateIconImages)
 
         for primaryImage in iconImages {
-            let toPath = arguments.appBundle.path.appending(pathComponent: primaryImage.destination)
-            try FileManager.default.moveItem(atPath: primaryImage.source.path, toPath: toPath)
+            let destinationPath = arguments.appBundle.path.appending(pathComponent: primaryImage.destination)
+            try FileManager.default.copyItem(atPath: primaryImage.source.path, toPath: destinationPath)
         }
 
     }
