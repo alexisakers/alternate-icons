@@ -125,7 +125,7 @@ public enum Script {
 
     public static func fail(reason: String) -> Never {
 
-        let message = "💥  \(reason)".utf8
+        let message = "💥  \(reason)\n".utf8
         let messageData = Data(message)
 
         FileHandle.standardError.write(messageData)
