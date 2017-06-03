@@ -1,0 +1,7 @@
+os: osx
+osx_image: xcode8.3
+language: objective-c
+
+script:
+    - swift build --enable-prefetching -c release -Xswiftc -static-stdlib
+    - xcodebuild clean test -scheme "AlternateIcons" -destination "arch=x86_64"
