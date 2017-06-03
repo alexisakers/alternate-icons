@@ -5,13 +5,13 @@ import Files
 /// The main entry point of the script.
 ///
 
-enum Script {
+public enum Script {
 
     ///
     /// The arguments required to execute the program.
     ///
 
-    struct Arguments: Equatable {
+    public struct Arguments: Equatable {
 
         /// The information plist file.
         let infoPlist: InfoPlist
@@ -22,7 +22,7 @@ enum Script {
         /// The app bundle.
         let appBundle: Folder
 
-        static func == (lhs: Arguments, rhs: Arguments) -> Bool {
+        public static func == (lhs: Arguments, rhs: Arguments) -> Bool {
             return lhs.infoPlist == rhs.infoPlist && lhs.assetCatalog == rhs.assetCatalog && lhs.appBundle == rhs.appBundle
         }
 
@@ -37,7 +37,7 @@ enum Script {
     /// - note: The basePath parameter should only be used for unit testing.
     ///
 
-    static func readArguments(resolvingAgainst basePath: String = "") throws -> Arguments {
+    public static func readArguments(resolvingAgainst basePath: String = "") throws -> Arguments {
 
         // 1) Info Plist
 
@@ -84,7 +84,7 @@ enum Script {
     /// Executes the script with the given arguments.
     ///
 
-    static func run(with arguments: Arguments) throws {
+    public static func run(with arguments: Arguments) throws {
 
         // 1) Read asset catalog
 
@@ -117,6 +117,20 @@ enum Script {
             try FileManager.default.copyItem(atPath: image.source.path, toPath: destinationPath)
         }
 
+    }
+
+    ///
+    /// Shows an error message and exits the script.
+    ///
+
+    public static func fail(reason: String) -> Never {
+
+        let message = "💥  \(reason)".utf8
+        let messageData = Data(message)
+
+        FileHandle.standardError.write(messageData)
+        exit(1)
+        
     }
 
 }
