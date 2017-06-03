@@ -10,7 +10,7 @@ import Files
 class RunTests: FailableTestCase {
 
     /// The arguments to use to test the script.
-    var arguments: AlternateIcons.Arguments!
+    var arguments: Script.Arguments!
 
     /// The Info.plist file before any modifications.
     var initialInfoPlistData: Data!
@@ -40,7 +40,7 @@ class RunTests: FailableTestCase {
             let catalog = AssetCatalog(folder: catalogFolder)
 
             initialInfoPlistData = try infoPlistFile.read()
-            arguments = AlternateIcons.Arguments(infoPlist: infoPlist, assetCatalog: catalog, appBundle: appBundleFolder)
+            arguments = Script.Arguments(infoPlist: infoPlist, assetCatalog: catalog, appBundle: appBundleFolder)
 
         } catch {
             XCTFail("Could not set up")
@@ -76,7 +76,7 @@ class RunTests: FailableTestCase {
 
     func testReadArguments() throws {
 
-        let readArguments = try AlternateIcons.readArguments(resolvingAgainst: basePath)
+        let readArguments = try Script.readArguments(resolvingAgainst: basePath)
         XCTAssertEqual(readArguments.appBundle, arguments.appBundle)
         XCTAssertEqual(readArguments.infoPlist, arguments.infoPlist)
         XCTAssertEqual(readArguments.assetCatalog, arguments.assetCatalog)
@@ -98,7 +98,7 @@ class RunTests: FailableTestCase {
             BundleIcon(name: "Sombre", filePrefix: "Sombre")
         ]
 
-        try AlternateIcons.run(with: arguments)
+        try Script.run(with: arguments)
 
         // 2) Verify Info.plist
 

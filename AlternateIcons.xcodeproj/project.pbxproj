@@ -11,7 +11,7 @@
 		5E74BD9F1EE1DC51003F5AE8 /* AppIconSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BD9E1EE1DC51003F5AE8 /* AppIconSet.swift */; };
 		5E74BDA11EE1E4BE003F5AE8 /* AssetCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA01EE1E4BE003F5AE8 /* AssetCatalogTests.swift */; };
 		5E74BDA41EE1F582003F5AE8 /* Xcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA31EE1F582003F5AE8 /* Xcode.swift */; };
-		5E74BDA61EE1FD36003F5AE8 /* AlternateIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA51EE1FD36003F5AE8 /* AlternateIcons.swift */; };
+		5E74BDA61EE1FD36003F5AE8 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA51EE1FD36003F5AE8 /* Script.swift */; };
 		5E74BDA81EE20CBB003F5AE8 /* RunTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA71EE20CBB003F5AE8 /* RunTests.swift */; };
 		5E74BDAA1EE2915C003F5AE8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA91EE2915C003F5AE8 /* Error.swift */; };
 		5E74BDAE1EE2946E003F5AE8 /* FailableTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDAD1EE2946E003F5AE8 /* FailableTestCase.swift */; };
@@ -108,7 +108,7 @@
 		5E74BD9E1EE1DC51003F5AE8 /* AppIconSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIconSet.swift; sourceTree = "<group>"; };
 		5E74BDA01EE1E4BE003F5AE8 /* AssetCatalogTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCatalogTests.swift; sourceTree = "<group>"; };
 		5E74BDA31EE1F582003F5AE8 /* Xcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Xcode.swift; sourceTree = "<group>"; };
-		5E74BDA51EE1FD36003F5AE8 /* AlternateIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlternateIcons.swift; sourceTree = "<group>"; };
+		5E74BDA51EE1FD36003F5AE8 /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		5E74BDA71EE20CBB003F5AE8 /* RunTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTests.swift; sourceTree = "<group>"; };
 		5E74BDA91EE2915C003F5AE8 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		5E74BDAD1EE2946E003F5AE8 /* FailableTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailableTestCase.swift; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -253,7 +253,6 @@
 				OBJ_18 /* Dependencies */,
 				OBJ_23 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -268,13 +267,13 @@
 		OBJ_8 /* AltKit */ = {
 			isa = PBXGroup;
 			children = (
-				5E74BDA51EE1FD36003F5AE8 /* AlternateIcons.swift */,
+				5E74BDA91EE2915C003F5AE8 /* Error.swift */,
 				OBJ_9 /* AssetCatalog.swift */,
 				5E74BD9E1EE1DC51003F5AE8 /* AppIconSet.swift */,
 				OBJ_10 /* BundleIcon.swift */,
 				OBJ_11 /* InfoPlist.swift */,
 				5E74BDA31EE1F582003F5AE8 /* Xcode.swift */,
-				5E74BDA91EE2915C003F5AE8 /* Error.swift */,
+				5E74BDA51EE1FD36003F5AE8 /* Script.swift */,
 			);
 			name = AltKit;
 			path = Sources/AltKit;
@@ -387,7 +386,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_23 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -425,7 +424,7 @@
 				OBJ_48 /* AssetCatalog.swift in Sources */,
 				5E74BD9F1EE1DC51003F5AE8 /* AppIconSet.swift in Sources */,
 				5E74BDA41EE1F582003F5AE8 /* Xcode.swift in Sources */,
-				5E74BDA61EE1FD36003F5AE8 /* AlternateIcons.swift in Sources */,
+				5E74BDA61EE1FD36003F5AE8 /* Script.swift in Sources */,
 				OBJ_49 /* BundleIcon.swift in Sources */,
 				5E74BDAA1EE2915C003F5AE8 /* Error.swift in Sources */,
 				OBJ_50 /* InfoPlist.swift in Sources */,

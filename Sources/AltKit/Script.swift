@@ -5,7 +5,7 @@ import Files
 /// The main entry point of the script.
 ///
 
-enum AlternateIcons {
+enum Script {
 
     ///
     /// The arguments required to execute the program.
@@ -33,6 +33,8 @@ enum AlternateIcons {
 
     ///
     /// Reads the arguments from the current context.
+    ///
+    /// - note: The basePath parameter should only be used for unit testing.
     ///
 
     static func readArguments(resolvingAgainst basePath: String = "") throws -> Arguments {
@@ -107,13 +109,12 @@ enum AlternateIcons {
 
         // 3) Copy all icons into app bundle
 
-        var iconImages = primaryIconSet.enumerateImageFiles()
-        let alternateIconImages = merge(alternateIconSets.map { $0.enumerateImageFiles() })
-        iconImages.append(contentsOf: alternateIconImages)
+        let iconImagesNames = try arguments.assetCatalog.listAppIconSets().map { $0.enumerateImageFiles() }
+        let iconImages = merge(iconImagesNames)
 
-        for primaryImage in iconImages {
-            let destinationPath = arguments.appBundle.path.appending(pathComponent: primaryImage.destination)
-            try FileManager.default.copyItem(atPath: primaryImage.source.path, toPath: destinationPath)
+        for image in iconImages {
+            let destinationPath = arguments.appBundle.path.appending(pathComponent: image.destination)
+            try FileManager.default.copyItem(atPath: image.source.path, toPath: destinationPath)
         }
 
     }

@@ -4,18 +4,22 @@ import Foundation
 /// The list of known errors.
 ///
 
-enum AltError: LocalizedError {
+enum AltError: String, LocalizedError {
 
     /// The Info.plist file could not be read.
-    case noInfoPlist
+    case noInfoPlist = "The Info.plist file could not be read."
 
     /// The asset catalog could not be read.
-    case noAssetCatalog
+    case noAssetCatalog = "The asset catalog could not be read."
 
     /// The app bundle could not be found.
-    case noAppBundle
+    case noAppBundle = "The app bundle could not be found."
 
     /// No app icon set named 'AppIcon' was found.
-    case noPrimaryIconSet
+    case noPrimaryIconSet = "No app icon set named 'AppIcon' was found."
+
+    var errorDescription: String? {
+        return rawValue
+    }
 
 }
