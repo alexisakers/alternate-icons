@@ -43,7 +43,7 @@ class RunTests: FailableTestCase {
             arguments = Script.Arguments(infoPlist: infoPlist, assetCatalog: catalog, appBundle: appBundleFolder)
 
         } catch {
-            XCTFail("Could not set up")
+            XCTFail("Could not set up: \(error)")
         }
 
     }
