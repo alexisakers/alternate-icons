@@ -1,4 +1,4 @@
-INSTALL_PATH = /usr/local/bin/alternate-icons
+INSTALL_PATH = /usr/local/bin/embed-alternate-icons
 
 install:
 	swift package clean

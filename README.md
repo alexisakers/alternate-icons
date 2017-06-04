@@ -29,7 +29,7 @@ To set up AlternateIcons as an Xcode build phase, do the following:
 4. In the Build Phases section of your project target, add a new Run Script phase. The script should be:
 
     ~~~
-    xcembed-alternate-icons
+    embed-alternate-icons
     ~~~
 
     You now need to add the path to the Asset Catalog you've chosen at step *1* under "Input Files", e.g.:
