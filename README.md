@@ -18,13 +18,13 @@ make install
 
 To set up AlternateIcons as an Xcode build phase, do the following:
 
-1. Choose an Xcode asset catalog in your project.
+1. Create a new Xcode asset catalog to hold your icons, and **do not add it to your target**.
 
 2. Add your primary and alternate app icons to this asset catalog, using the '*New iOS App Icon*' template.
 
     **NOTE**: The primary icon needs to be named `AppIcon`.
 
-3. In the General section of your project target, select 'Do not use Asset Catalog' in the App Icon Source setting. You don't need to perform this step if your app wasn't using an Asset Catalog as the app icon source.
+3. In the General section of your project target, select 'Do not use Asset Catalog' in the App Icon Source setting. If you don't see this option and you have a 'Use Asset Catalog' button, you can skip this step *3*.
 
 4. In the Build Phases section of your project target, add a new Run Script phase. The script should be:
 
@@ -32,7 +32,7 @@ To set up AlternateIcons as an Xcode build phase, do the following:
     embed-alternate-icons
     ~~~
 
-    You now need to add the path to the Asset Catalog you've chosen at step *1* under "Input Files", e.g.:
+    You now need to add the path to the Asset Catalog you've created at step *1* under "Input Files", e.g.:
     
     ~~~
     $(SRCROOT)/Icons.xcassets
@@ -44,7 +44,13 @@ To set up AlternateIcons as an Xcode build phase, do the following:
 
 TADA! You've embedded alternate icons into your app!
 
-Now, you can read the [official documentation](https://developer.apple.com/reference/uikit/uiapplication/2806818-setalternateiconname) to know how to change icons at runtime.
+You can now change the icon in your app using: 
+
+~~~swift
+UIApplication.shared.setAlternateIconName("%AlternateIcon%", completionHandler: nil)
+~~~
+
+Replace `"%AlternateIcon%"` by the name of the icon's set in the Asset Catalog created at step *1*.
 
 ## How it works
 
