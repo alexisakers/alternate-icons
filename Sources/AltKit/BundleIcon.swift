@@ -7,6 +7,7 @@ import Foundation
 struct BundleIcon: Hashable {
 
     let name: String
+    let files: [String]
 
     var hashValue: Int {
         return name.hashValue
@@ -39,7 +40,15 @@ extension InfoPlist {
 
         // 1) Primary icon
 
-        let primaryIcon = BundleIcon(name: "AppIcon")
+        guard let primaryIconInfo = icons[InfoPlist.primaryIconKey] as? [AnyHashable: Any] else {
+            return nil
+        }
+
+        guard let primaryIconFiles = primaryIconInfo[InfoPlist.iconFilesKey] as? [String] else {
+            return nil
+        }
+
+        let primaryIcon = BundleIcon(name: "AppIcon", files: primaryIconFiles)
 
         // 2) Alternate icons
 
@@ -48,7 +57,13 @@ extension InfoPlist {
         }
 
         let alternateIconsArray: [BundleIcon] = alternateIconsDictionary.flatMap {
-            BundleIcon(name: $0.key)
+
+            guard let files = $0.value[InfoPlist.iconFilesKey] as? [String] else {
+                return nil
+            }
+
+            return BundleIcon(name: $0.key, files: files)
+
         }
         
         let alternateIcons = Set<BundleIcon>(alternateIconsArray)

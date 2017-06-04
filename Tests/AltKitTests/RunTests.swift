@@ -91,11 +91,11 @@ class RunTests: FailableTestCase {
 
         // 1) Run the script
 
-        let expectedPrimaryIcon = BundleIcon(name: "AppIcon")
+        let expectedPrimaryIcon = BundleIcon(name: "AppIcon", files: [])
 
         let expectedAlternateIcons: Set<BundleIcon> = [
-            BundleIcon(name: "Light"),
-            BundleIcon(name: "Sombre")
+            BundleIcon(name: "Light", files: []),
+            BundleIcon(name: "Sombre", files: [])
         ]
 
         try Script.run(with: arguments)

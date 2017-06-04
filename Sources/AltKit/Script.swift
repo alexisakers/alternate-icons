@@ -98,14 +98,18 @@ public enum Script {
 
         if let infoPlistContents = arguments.infoPlist.parseIcons() {
 
-            let removedAlternateIcons = alternateIconSets.filter { icon in !infoPlistContents.alternateIcons.contains(where: { $0.name == icon.name }) }
+            let removedAlternateIcons = infoPlistContents.alternateIcons.filter { icon in !alternateIconSets.contains(where: { $0.name == icon.name }) }
 
             for removedAlternateIcon in removedAlternateIcons {
 
-                let removedImages = removedAlternateIcon.enumerateImageFiles().map { $0.destination }
+                for removedImagePath in removedAlternateIcon.files {
 
-                for removedImagePath in removedImages {
-                    try FileManager.default.removeItem(atPath: removedImagePath)
+                    let destinationPath = arguments.appBundle.path.appending(pathComponent: removedImagePath + ".png")
+
+                    if FileManager.default.fileExists(atPath: destinationPath) {
+                        try FileManager.default.removeItem(atPath: destinationPath)
+                    }
+
                 }
 
             }
