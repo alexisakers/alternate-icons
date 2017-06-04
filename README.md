@@ -1,5 +1,8 @@
 # AlternateIcons
 
+[![Build Status](https://travis-ci.org/alexaubry/alternate-icons.svg?branch=master)](https://travis-ci.org/alexaubry/alternate-icons)
+[![Twitter : @leksantoine](https://img.shields.io/badge/Twitter-%40leksantoine-6C7A89.svg)](https://twitter.com/aleksaubry)
+
 AlternateIcons is an Xcode build script that enables using Asset Catalogs to add alternate app icons to your iOS app. It takes care of copying the icon assets to your app bundle and correctly updating the Info.plist. No more manual setup required!
 
 ## Installation
