@@ -83,7 +83,9 @@ public enum Script {
 
     public static func run(with arguments: Arguments) throws {
 
-        // 1) Read asset catalog
+        // 1) Read Asset Catalog
+
+        step("Reading \(arguments.assetCatalog.folder.name) asset catalog")
 
         var appIconSets = try arguments.assetCatalog.listAppIconSets()
 
@@ -94,6 +96,7 @@ public enum Script {
         let primaryIconSet = appIconSets.remove(at: primaryIndex)
         let alternateIconSets = appIconSets
 
+
         // 2) Cleanup
 
         if let infoPlistContents = arguments.infoPlist.parseIcons() {
@@ -101,6 +104,8 @@ public enum Script {
             let removedAlternateIcons = infoPlistContents.alternateIcons.filter { icon in !alternateIconSets.contains(where: { $0.name == icon.name }) }
 
             for removedAlternateIcon in removedAlternateIcons {
+
+                step("Removing deleted \(removedAlternateIcon.name) icons")
 
                 for removedImagePath in removedAlternateIcon.files {
 
@@ -116,7 +121,10 @@ public enum Script {
 
         }
 
+
         // 3) Update Info.plist
+
+        step("Updating Info.plist with new icons")
 
         arguments.infoPlist.update(primaryIcon: primaryIconSet, alternateIcons: alternateIconSets)
         try arguments.infoPlist.commitChanges()
@@ -125,6 +133,8 @@ public enum Script {
 
         let iconImagesNames = try arguments.assetCatalog.listAppIconSets().map { $0.enumerateImageFiles() }
         let iconImages = merge(iconImagesNames)
+
+        step("Copying \(iconImages.count) icons into place")
 
         for image in iconImages {
 
@@ -152,6 +162,28 @@ public enum Script {
         FileHandle.standardError.write(messageData)
         exit(1)
         
+    }
+
+    ///
+    /// Prints a step of the script.
+    ///
+
+    public static func step(_ description: String, emoji: String = "👉") {
+
+        let message = "\(emoji)  \(description)\n".utf8
+        let messageData = Data(message)
+
+        FileHandle.standardOutput.write(messageData)
+
+    }
+
+    ///
+    /// Marks the script as completed and exits with code 0.
+    ///
+
+    public static func done() {
+        step("Done! All icons were embedded successfully.", emoji: "✅")
+        exit(0)
     }
 
 }
