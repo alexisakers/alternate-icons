@@ -26,7 +26,7 @@ class RunTests: FailableTestCase {
         let bundle = Bundle(for: InfoPlistTests.self)
         basePath = bundle.bundlePath + "/Contents/Resources/TestFixtures/"
 
-        let infoPlistPath = bundle.bundlePath + "/Contents/Resources/TestFixtures/NoAlternateInfo.plist"
+        let infoPlistPath = bundle.bundlePath + "/Contents/Resources/TestFixtures/AppBundle/Info.plist"
         let catalogPath = bundle.bundlePath + "/Contents/Resources/TestFixtures/Images.xcassets"
         let appBundlePath = bundle.bundlePath + "/Contents/Resources/TestFixtures/AppBundle"
 
@@ -91,18 +91,18 @@ class RunTests: FailableTestCase {
 
         // 1) Run the script
 
-        let expectedPrimaryIcon = BundleIcon(name: nil, filePrefix: "AppIcon")
+        let expectedPrimaryIcon = BundleIcon(name: "AppIcon")
 
         let expectedAlternateIcons: Set<BundleIcon> = [
-            BundleIcon(name: "Light", filePrefix: "Light"),
-            BundleIcon(name: "Sombre", filePrefix: "Sombre")
+            BundleIcon(name: "Light"),
+            BundleIcon(name: "Sombre")
         ]
 
         try Script.run(with: arguments)
 
         // 2) Verify Info.plist
 
-        let infoPlistPath = basePath + "NoAlternateInfo.plist"
+        let infoPlistPath = basePath + "AppBundle/Info.plist"
         let infoPlistFile = try File(path: infoPlistPath)
         let infoPlist = try InfoPlist(file: infoPlistFile)
 

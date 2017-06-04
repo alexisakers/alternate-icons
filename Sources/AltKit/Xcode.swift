@@ -16,11 +16,6 @@ enum Xcode {
         return get(variable: "CONTENTS_FOLDER_PATH")
     }
 
-    /// The path to the information property list.
-    static var infoPlistFile: String? {
-        return get(variable: "INFOPLIST_FILE")
-    }
-
     /// The input files of the script.
     static var scriptInputFiles: [String]? {
 

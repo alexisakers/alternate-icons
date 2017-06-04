@@ -36,61 +36,6 @@ class InfoPlist {
 
     }
 
-
-    // MARK: - I/O
-
-    ///
-    /// Parses the icon information contained in the `Info.plist`.
-    ///
-    /// - returns: The primary icon and its alternate icons
-    ///
-
-    func parseIcons() -> (primaryIcon: BundleIcon, alternateIcons: Set<BundleIcon>)? {
-
-        guard let icons = infoDictionary[InfoPlist.iconsKey] as? [AnyHashable: Any] else {
-            return nil
-        }
-
-        func parseIcon(in dictionary: [AnyHashable: Any], name: String?) -> BundleIcon? {
-
-            guard let files = dictionary[InfoPlist.iconFilesKey] as? [String] else {
-                return nil
-            }
-
-            guard files.count > 0 else {
-                return nil
-            }
-
-            return BundleIcon(name: name, filePrefix: files[0])
-
-        }
-
-        // 1) Primary icon
-
-        guard let primaryIconDictionary = icons[InfoPlist.primaryIconKey] as? [AnyHashable: Any] else {
-            return nil
-        }
-
-        guard let primaryIcon = parseIcon(in: primaryIconDictionary, name: nil) else {
-            return nil
-        }
-
-
-        // 2) Alternate icons
-
-        guard let alternateIconsDictionary = icons[InfoPlist.alternateIconsKey] as? [String: [AnyHashable: Any]] else {
-            return (primaryIcon, [])
-        }
-
-        let alternateIconsArray: [BundleIcon] = alternateIconsDictionary.flatMap {
-            parseIcon(in: $0.value, name: $0.key)
-        }
-
-        let alternateIcons = Set<BundleIcon>(alternateIconsArray)
-        return (primaryIcon, alternateIcons)
-
-    }
-
     ///
     /// Updates the Info.plist file with a new set of icons.
     ///
@@ -98,27 +43,27 @@ class InfoPlist {
     /// - parameter alternateIcons: The list of alternate app icons to use.
     ///
 
-    func update(primaryIcon: BundleIcon, alternateIcons: Set<BundleIcon>) {
+    func update(primaryIcon: AppIconSet, alternateIcons: Set<AppIconSet>) {
 
         let alternateIconsFiles = alternateIcons.reduce([AnyHashable: Any]()) {
             result, next in
 
-            guard let name = next.name else {
-                return result
-            }
+            let files = next.enumerateImageFiles().map { $0.destination.excludingExtension }
 
             var resultCopy = result
-            resultCopy[name] = next.makeAlternateAppIconDictionary()
+            resultCopy[next.name] = [
+                InfoPlist.iconFilesKey: files
+            ]
 
             return resultCopy
 
         }
 
+        let primaryFiles = primaryIcon.enumerateImageFiles().map { $0.destination.excludingExtension }
+
         let dictionary: [AnyHashable: Any] = [
             InfoPlist.primaryIconKey: [
-                InfoPlist.iconFilesKey: [
-                    primaryIcon.filePrefix
-                ]
+                InfoPlist.iconFilesKey: primaryFiles
             ],
             InfoPlist.alternateIconsKey: alternateIconsFiles
         ]

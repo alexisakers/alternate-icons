@@ -117,11 +117,6 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "INFOPLIST_FILE"
-            value = "NoAlternateInfo.plist"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
             key = "SCRIPT_INPUT_FILE_COUNT"
             value = "1"
             isEnabled = "YES">

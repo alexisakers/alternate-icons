@@ -12,6 +12,9 @@ class InfoPlistTests: FailableTestCase {
     /// The file containing valid alternate icons.
     var alternateIconsInfo: InfoPlist!
 
+    /// The asset catalog.
+    var assetCatalog: AssetCatalog!
+
 
     // MARK: - Lifecycle
 
@@ -19,6 +22,7 @@ class InfoPlistTests: FailableTestCase {
 
         let bundle = Bundle(for: InfoPlistTests.self)
         let alternateIconsInfoPath = bundle.bundlePath + "/Contents/Resources/TestFixtures/AlternateInfo.plist"
+        let imagesAssetCatalogPath = bundle.bundlePath + "/Contents/Resources/TestFixtures/Images.xcassets"
 
         guard let alternateIconsInfoFile = try? File(path: alternateIconsInfoPath) else {
             XCTFail("Could not open the AlternateInfo.plist file.")
@@ -30,65 +34,54 @@ class InfoPlistTests: FailableTestCase {
             return
         }
 
-        self.alternateIconsInfo = alternateIconsInfo
+        guard let assetCatalogFolder = try? Folder(path: imagesAssetCatalogPath) else {
+            XCTFail("Could not open the Images.xcassets file.")
+            return
+        }
 
+        self.alternateIconsInfo = alternateIconsInfo
+        self.assetCatalog = AssetCatalog(folder: assetCatalogFolder)
 
     }
 
     override func tearDown() {
         alternateIconsInfo = nil
+        assetCatalog = nil
     }
 
 
     // MARK: - Tests
 
     ///
-    /// Tests that parsing can recognize primary and alternate icons.
-    ///
-
-    func testParsing() {
-
-        let expectedPrimary = BundleIcon(name: nil, filePrefix: "ic_none")
-
-        let expectedAlternate: Set<BundleIcon> = [
-            BundleIcon(name: "barca", filePrefix: "ic_barca"),
-            BundleIcon(name: "ams", filePrefix: "ic_ams"),
-            BundleIcon(name: "paris", filePrefix: "ic_paris")
-        ]
-
-        guard let iconInfo = alternateIconsInfo.parseIcons() else {
-            XCTFail("Could not read icon infos.")
-            return
-        }
-
-        XCTAssertEqual(iconInfo.primaryIcon, expectedPrimary)
-        XCTAssertEqual(iconInfo.alternateIcons, expectedAlternate)
-
-    }
-
-    ///
     /// Tests that removing and adding bundle icons when updating works correctly.
     ///
 
-    func testUpdatingExistingInfo() {
+    func testUpdatingExistingInfo() throws {
 
-        let primaryIcon = BundleIcon(name: nil, filePrefix: "ic_main")
+        var icons = try assetCatalog.listAppIconSets()
 
-        let alternateIcons: Set<BundleIcon> = [
-            BundleIcon(name: "paris", filePrefix: "ic_paris"),
-            BundleIcon(name: "north_pole", filePrefix: "ic_north_pole"),
-            BundleIcon(name: "south_pole", filePrefix: "ic_south_pole")
-        ]
+        guard let primaryIndex = icons.index(where: { $0.name == "AppIcon" }) else {
+            XCTFail("No primary app icon.")
+            return
+        }
 
-        alternateIconsInfo.update(primaryIcon: primaryIcon, alternateIcons: alternateIcons)
+        let primaryIcon = icons.remove(at: primaryIndex)
+        alternateIconsInfo.update(primaryIcon: primaryIcon, alternateIcons: icons)
 
         guard let iconInfo = alternateIconsInfo.parseIcons() else {
             XCTFail("Could not parse icons.")
             return
         }
 
-        XCTAssertEqual(iconInfo.primaryIcon, primaryIcon)
-        XCTAssertEqual(iconInfo.alternateIcons, alternateIcons)
+        let expectedPrimaryIcon = BundleIcon(name: "AppIcon")
+
+        let expectedAlternateIcons: Set<BundleIcon> = [
+            BundleIcon(name: "Light"),
+            BundleIcon(name: "Sombre")
+        ]
+
+        XCTAssertEqual(iconInfo.primaryIcon, expectedPrimaryIcon)
+        XCTAssertEqual(iconInfo.alternateIcons, expectedAlternateIcons)
 
     }
 

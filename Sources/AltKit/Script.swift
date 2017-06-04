@@ -39,15 +39,7 @@ public enum Script {
 
     public static func readArguments(resolvingAgainst basePath: String = "") throws -> Arguments {
 
-        // 1) Info Plist
-
-        guard let infoPlistPath = Xcode.infoPlistFile else {
-            throw AltError.noInfoPlist
-        }
-
-        let infoPlistFile = try File(path: basePath + infoPlistPath)
-
-        // 2) Asset Catalog
+        // 1) Asset Catalog
 
         guard let scriptInputFiles = Xcode.scriptInputFiles else {
             throw AltError.noAssetCatalog
@@ -60,7 +52,7 @@ public enum Script {
         let assetCatalogPath = scriptInputFiles[0]
         let assetCatalogFolder = try Folder(path: basePath + assetCatalogPath)
 
-        // 3) App Bundle
+        // 2) App Bundle
 
         let buildPath = Xcode.buildProductsDir ?? basePath
 
@@ -69,6 +61,11 @@ public enum Script {
         }
 
         let appBundlePath = buildPath.appending(pathComponent: contentsDir)
+
+        // 3) Info Plist
+
+        let infoPlistPath = appBundlePath.appending(pathComponent: "Info.plist")
+        let infoPlistFile = try File(path: infoPlistPath)
 
         let infoPlist = try InfoPlist(file: infoPlistFile)
         let assetCatalog = AssetCatalog(folder: assetCatalogFolder)
@@ -97,14 +94,9 @@ public enum Script {
         let primaryIconSet = appIconSets.remove(at: primaryIndex)
         let alternateIconSets = appIconSets
 
-
         // 2) Update Info.plist
 
-        let primaryIcon = BundleIcon(name: nil, filePrefix: primaryIconSet.name)
-        let alternateIconsArray = alternateIconSets.map { BundleIcon(name: $0.name, filePrefix: $0.name) }
-        let alternateIcons = Set<BundleIcon>(alternateIconsArray)
-
-        arguments.infoPlist.update(primaryIcon: primaryIcon, alternateIcons: alternateIcons)
+        arguments.infoPlist.update(primaryIcon: primaryIconSet, alternateIcons: alternateIconSets)
         try arguments.infoPlist.commitChanges()
 
         // 3) Copy all icons into app bundle
@@ -113,8 +105,15 @@ public enum Script {
         let iconImages = merge(iconImagesNames)
 
         for image in iconImages {
+
             let destinationPath = arguments.appBundle.path.appending(pathComponent: image.destination)
+
+            if FileManager.default.fileExists(atPath: destinationPath) {
+                try FileManager.default.removeItem(atPath: destinationPath)
+            }
+
             try FileManager.default.copyItem(atPath: image.source.path, toPath: destinationPath)
+
         }
 
     }
@@ -153,6 +152,27 @@ extension String {
         let pathJoiner = hasSuffix("/") ? "" : "/"
         return self + pathJoiner + pathComponent
 
+    }
+
+    /// The name of the item (excluding any extension).
+    var excludingExtension: String {
+        guard let `extension` = `extension` else {
+            return self
+        }
+
+        let startIndex = index(endIndex, offsetBy: -`extension`.characters.count - 1)
+        return replacingCharacters(in: startIndex..<endIndex, with: "")
+    }
+
+    /// Any extension that the item has.
+    var `extension`: String? {
+        let components = self.components(separatedBy: ".")
+
+        guard components.count > 1 else {
+            return nil
+        }
+        
+        return components.last
     }
 
 }
