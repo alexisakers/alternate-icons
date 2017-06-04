@@ -1,5 +1,4 @@
 import Foundation
-@testable import AltKit
 
 ///
 /// An icon from the app bundle.

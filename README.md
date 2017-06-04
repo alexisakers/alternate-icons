@@ -42,7 +42,7 @@ To set up AlternateIcons as an Xcode build phase, do the following:
     
 5. Build your app.
 
-TADA! You've embedded alternate icons into your app! If you have trouble setting up your app, check out the Demo project.
+TADA! You've embedded alternate icons into your app!
 
 Now, you can read the [official documentation](https://developer.apple.com/reference/uikit/uiapplication/2806818-setalternateiconname) to know how to change icons at runtime.
 
@@ -51,7 +51,7 @@ Now, you can read the [official documentation](https://developer.apple.com/refer
 Every time you build your app, the script will perform the following steps:
 
 1. Infer the location of build artefacts from build environment variables passed by Xcode
-2. Parse the Asset Catalog to get the list of icons to embed (the script stops here if it found no changes)
+2. Parse the Asset Catalog to get the list of icons to embed
 3. Delete any icon you've removed from the Asset Catalog
 4. Update the `CFBundleIcon` section of the Info.plist in the app bundle (not in your source code, to avoid trouble with version control)
 5. Copy the new icons in the app bundle

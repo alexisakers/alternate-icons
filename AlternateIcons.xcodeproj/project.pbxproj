@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E3CF8A91EE44BD500B9091A /* BundleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3CF8A81EE44BD500B9091A /* BundleIcon.swift */; };
+		5E3CF8AB1EE48BC900B9091A /* BundleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3CF8A81EE44BD500B9091A /* BundleIcon.swift */; };
 		5E74BD9D1EE1DBBF003F5AE8 /* TestFixtures in CopyFiles */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* TestFixtures */; };
 		5E74BD9F1EE1DC51003F5AE8 /* AppIconSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BD9E1EE1DC51003F5AE8 /* AppIconSet.swift */; };
 		5E74BDA11EE1E4BE003F5AE8 /* AssetCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74BDA01EE1E4BE003F5AE8 /* AssetCatalogTests.swift */; };
@@ -195,7 +195,6 @@
 		OBJ_15 /* AltKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				5E3CF8A81EE44BD500B9091A /* BundleIcon.swift */,
 				5E74BDAD1EE2946E003F5AE8 /* FailableTestCase.swift */,
 				OBJ_16 /* InfoPlistTests.swift */,
 				5E74BDA01EE1E4BE003F5AE8 /* AssetCatalogTests.swift */,
@@ -268,6 +267,7 @@
 		OBJ_8 /* AltKit */ = {
 			isa = PBXGroup;
 			children = (
+				5E3CF8A81EE44BD500B9091A /* BundleIcon.swift */,
 				5E74BDA91EE2915C003F5AE8 /* Error.swift */,
 				OBJ_9 /* AssetCatalog.swift */,
 				5E74BD9E1EE1DC51003F5AE8 /* AppIconSet.swift */,
@@ -423,6 +423,7 @@
 			files = (
 				OBJ_48 /* AssetCatalog.swift in Sources */,
 				5E74BD9F1EE1DC51003F5AE8 /* AppIconSet.swift in Sources */,
+				5E3CF8AB1EE48BC900B9091A /* BundleIcon.swift in Sources */,
 				5E74BDA41EE1F582003F5AE8 /* Xcode.swift in Sources */,
 				5E74BDA61EE1FD36003F5AE8 /* Script.swift in Sources */,
 				5E74BDAA1EE2915C003F5AE8 /* Error.swift in Sources */,
@@ -445,7 +446,6 @@
 				5E74BDA11EE1E4BE003F5AE8 /* AssetCatalogTests.swift in Sources */,
 				5E74BDAE1EE2946E003F5AE8 /* FailableTestCase.swift in Sources */,
 				5E74BDA81EE20CBB003F5AE8 /* RunTests.swift in Sources */,
-				5E3CF8A91EE44BD500B9091A /* BundleIcon.swift in Sources */,
 				OBJ_74 /* InfoPlistTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

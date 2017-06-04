@@ -94,12 +94,30 @@ public enum Script {
         let primaryIconSet = appIconSets.remove(at: primaryIndex)
         let alternateIconSets = appIconSets
 
-        // 2) Update Info.plist
+        // 2) Cleanup
+
+        if let infoPlistContents = arguments.infoPlist.parseIcons() {
+
+            let removedAlternateIcons = alternateIconSets.filter { icon in !infoPlistContents.alternateIcons.contains(where: { $0.name == icon.name }) }
+
+            for removedAlternateIcon in removedAlternateIcons {
+
+                let removedImages = removedAlternateIcon.enumerateImageFiles().map { $0.destination }
+
+                for removedImagePath in removedImages {
+                    try FileManager.default.removeItem(atPath: removedImagePath)
+                }
+
+            }
+
+        }
+
+        // 3) Update Info.plist
 
         arguments.infoPlist.update(primaryIcon: primaryIconSet, alternateIcons: alternateIconSets)
         try arguments.infoPlist.commitChanges()
 
-        // 3) Copy all icons into app bundle
+        // 4) Copy all icons into app bundle
 
         let iconImagesNames = try arguments.assetCatalog.listAppIconSets().map { $0.enumerateImageFiles() }
         let iconImages = merge(iconImagesNames)
