@@ -9,7 +9,7 @@ AlternateIcons is an Xcode build script that allows you to use Asset Catalogs to
 
 ### From Pre-Built Binary
 
-You can download the tarball for the version you want to install in the [Releases](https://github.com/alexaubry/alernate-icons/release) section. Once the archive is expanded, run the `install.sh` script.
+You can download the tarball for the version you want to install in the [Releases](https://github.com/alexaubry/alternate-icons/releases) section. Once the archive is expanded, run the `install.sh` script.
 
 ### From Source
 
