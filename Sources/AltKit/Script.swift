@@ -11,7 +11,7 @@ public enum Script {
     /// The arguments required to execute the program.
     ///
 
-    public struct Arguments: Equatable {
+    public struct Arguments {
 
         /// The information plist file.
         let infoPlist: InfoPlist
@@ -21,10 +21,6 @@ public enum Script {
 
         /// The app bundle.
         let appBundle: Folder
-
-        public static func == (lhs: Arguments, rhs: Arguments) -> Bool {
-            return lhs.infoPlist == rhs.infoPlist && lhs.assetCatalog == rhs.assetCatalog && lhs.appBundle == rhs.appBundle
-        }
 
     }
 

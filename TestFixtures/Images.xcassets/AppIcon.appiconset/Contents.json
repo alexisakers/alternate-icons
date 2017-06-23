@@ -148,6 +148,12 @@
       "idiom" : "ios-marketing",
       "size" : "1024x1024",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "fake",
+      "size" : "1024x1024",
+      "scale" : "1x",
+      "filename": "fake.png"
     }
   ],
   "info" : {

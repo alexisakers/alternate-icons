@@ -28,7 +28,7 @@ class InfoPlist {
         let infoObject = try PropertyListSerialization.propertyList(from: fileData, options: [], format: nil)
 
         guard let infoDictionary = infoObject as? [AnyHashable: Any] else {
-            throw NSError()
+            throw AltError.invalidInfoPlist
         }
 
         self.file = file
