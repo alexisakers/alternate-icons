@@ -96,40 +96,7 @@ public enum Script {
         let primaryIconSet = appIconSets.remove(at: primaryIndex)
         let alternateIconSets = appIconSets
 
-
-        // 2) Cleanup
-
-        if let infoPlistContents = arguments.infoPlist.parseIcons() {
-
-            let removedAlternateIcons = infoPlistContents.alternateIcons.filter { icon in !alternateIconSets.contains(where: { $0.name == icon.name }) }
-
-            for removedAlternateIcon in removedAlternateIcons {
-
-                step("Removing deleted \(removedAlternateIcon.name) icons")
-
-                for removedImagePath in removedAlternateIcon.files {
-
-                    let destinationPath = arguments.appBundle.path.appending(pathComponent: removedImagePath + ".png")
-
-                    if FileManager.default.fileExists(atPath: destinationPath) {
-                        try FileManager.default.removeItem(atPath: destinationPath)
-                    }
-
-                }
-
-            }
-
-        }
-
-
-        // 3) Update Info.plist
-
-        step("Updating Info.plist with new icons")
-
-        arguments.infoPlist.update(primaryIcon: primaryIconSet, alternateIcons: alternateIconSets)
-        try arguments.infoPlist.commitChanges()
-
-        // 4) Copy all icons into app bundle
+        // 2) Copy all icons into app bundle
 
         let iconImagesNames = try arguments.assetCatalog.listAppIconSets().map { $0.enumerateImageFiles() }
         let iconImages = merge(iconImagesNames)
@@ -147,6 +114,41 @@ public enum Script {
             try FileManager.default.copyItem(atPath: image.source.path, toPath: destinationPath)
 
         }
+
+        // 3) Cleanup
+
+        cleanup: if let infoPlistContents = arguments.infoPlist.parseIcons() {
+
+            var oldImagesList = infoPlistContents.alternateIcons.map { $0.files }
+            oldImagesList.append(infoPlistContents.primaryIcon.files)
+
+            let oldImages = merge(oldImagesList)
+            let removedIcons = oldImages.filter { oldImage in !iconImages.contains(where: { $0.destination == oldImage }) }
+
+            guard removedIcons.count > 0 else {
+                break cleanup
+            }
+
+            step("Removing \(removedIcons.count) deleted icons")
+
+            for removedIcon in removedIcons {
+
+                let destinationPath = arguments.appBundle.path.appending(pathComponent: removedIcon)
+
+                if FileManager.default.fileExists(atPath: destinationPath) {
+                    try FileManager.default.removeItem(atPath: destinationPath)
+                }
+
+            }
+
+        }
+
+        // 4) Update Info.plist
+
+        step("Updating Info.plist with new icons")
+
+        arguments.infoPlist.update(primaryIcon: primaryIconSet, alternateIcons: alternateIconSets)
+        try arguments.infoPlist.commitChanges()
 
     }
 
