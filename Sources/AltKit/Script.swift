@@ -34,7 +34,7 @@ public enum Script {
     ///
     /// Reads the arguments from the current context.
     ///
-    /// - note: The basePath parameter should only be used for unit testing.
+    /// - note: The basePath parameter must only be used for unit testing.
     ///
 
     public static func readArguments(resolvingAgainst basePath: String = "") throws -> Arguments {
@@ -93,12 +93,9 @@ public enum Script {
             throw AltError.noPrimaryIconSet
         }
 
-        let primaryIconSet = appIconSets.remove(at: primaryIndex)
-        let alternateIconSets = appIconSets
-
         // 2) Copy all icons into app bundle
 
-        let iconImagesNames = try arguments.assetCatalog.listAppIconSets().map { $0.enumerateImageFiles() }
+        let iconImagesNames = appIconSets.map { $0.enumerateImageFiles() }
         let iconImages = merge(iconImagesNames)
 
         step("Copying \(iconImages.count) icons into place")
@@ -146,6 +143,9 @@ public enum Script {
         // 4) Update Info.plist
 
         step("Updating Info.plist with new icons")
+
+        let primaryIconSet = appIconSets.remove(at: primaryIndex)
+        let alternateIconSets = appIconSets
 
         arguments.infoPlist.update(primaryIcon: primaryIconSet, alternateIcons: alternateIconSets)
         try arguments.infoPlist.commitChanges()
