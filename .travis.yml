@@ -3,5 +3,18 @@ osx_image: xcode8.3
 language: objective-c
 
 script:
-    - swift build --enable-prefetching -c release -Xswiftc -static-stdlib
     - xcodebuild clean test -scheme "AlternateIcons" -destination "arch=x86_64"
+
+before_deploy:
+    - export RELEASE_NAME="alternate-icons-$TRAVIS_TAG.release"
+    - make build
+    - make release RELEASE_NAME="$RELEASE_NAME"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: vQ9CLg4YEm30CQV64XQP2q26rKfYMayJW06qY8EJAkf+HWPf8wDsSwsH1V1LPcoXDWI9hy3Y4NwvKjpWoflByt82kjxBx4qPasILlve2V1PO/njbTL22SJJdd1FLYPCfLD9To5MXSvcbEZffQwk2MX4DfOSLOJjGR0Ku5dw+IVFsa5IxJRKXq7tmQTLlZUad221oBgdSKPWmWk1aTpw7a6E604/DCD/m31/fK2fnz0L9ZnCd/jUZkObWZ5jboJ0CAnhhVHnMSnl1u15LJCezXhmp+3XrqyhasYkigcescZSBoKz5/nk8S6QZZFIctkaDZdQjpou3MHnmeXnGWO7nREC/s3nQ59lAN05tf/MfxomI0QFEXku86N2KSkcc9LG0IA1wVMeaJeJDA7spk2wL/htjhlPTz6BUWZ5auGTC07KxHOXfuQHwaz64wpvLfdASnsQ7mA8txn54ZAenF+TwNGI4StdCFX4VyG6OwGSACHg3629NajyIFExEQaD0nb+Jbk4/S/P0jqSOPJr9xaAr0KP3bB7ASjMsK1kulZTqj3u9iGsJulhEoJwYdHihhg1pBNjUOekyrM2YzVyVTyCVqWc0mliutwhQbzP1YgJBUqr7b3tae7cpSXve6kXp8PqN5jKgjNTo62BgJipAJZWkCqwqbM7TZkfbb2m72zS+zVs=
+  file: $RELEASE_NAME.tar.gz
+  on:
+    repo: alexaubry/alternate-icons
+    tags: true
