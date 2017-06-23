@@ -62,7 +62,7 @@ You can now change the icon in your code using:
 UIApplication.shared.setAlternateIconName("IconName", completionHandler: nil)
 ~~~
 
-> &#128218; Documentation: https://developer.apple.com/documentation/uikit/uiapplication/2806818-setalternateiconname
+> &#128218; Documentation: read on [developer.apple.com](https://developer.apple.com/documentation/uikit/uiapplication/2806818-setalternateiconname)
 
 ## How it works
 
