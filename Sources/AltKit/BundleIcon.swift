@@ -24,8 +24,6 @@ struct BundleIcon: Hashable {
 
 extension InfoPlist {
 
-    // MARK: - I/O
-
     ///
     /// Parses the icon information contained in the `Info.plist`.
     ///

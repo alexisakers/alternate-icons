@@ -28,7 +28,7 @@ class InfoPlist {
         let infoObject = try PropertyListSerialization.propertyList(from: fileData, options: [], format: nil)
 
         guard let infoDictionary = infoObject as? [AnyHashable: Any] else {
-            throw NSError()
+            throw AltError.invalidInfoPlist
         }
 
         self.file = file
@@ -59,11 +59,11 @@ class InfoPlist {
 
         }
 
-        let primaryFiles = primaryIcon.enumerateImageFiles().map { $0.destination.excludingExtension }
+        let primaryIconFiles = primaryIcon.enumerateImageFiles().map { $0.destination.excludingExtension }
 
         let dictionary: [AnyHashable: Any] = [
             InfoPlist.primaryIconKey: [
-                InfoPlist.iconFilesKey: primaryFiles
+                InfoPlist.iconFilesKey: primaryIconFiles
             ],
             InfoPlist.alternateIconsKey: alternateIconsFiles
         ]

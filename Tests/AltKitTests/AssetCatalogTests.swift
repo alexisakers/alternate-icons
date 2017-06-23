@@ -60,7 +60,7 @@ class AssetCatalogTests: FailableTestCase {
         let iconSets = try catalog.listAppIconSets()
 
         for set in iconSets {
-            XCTAssertEqual(set.images.count, 24)
+            XCTAssertTrue(set.images.count > 0)
         }
 
     }
@@ -109,6 +109,7 @@ class AssetCatalogTests: FailableTestCase {
         let namesSet = Set<String>(names)
 
         XCTAssertEqual(namesSet, expectedNamesSet)
+        XCTAssertFalse(namesSet.contains("fake.png"))
 
     }
 

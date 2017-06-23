@@ -114,7 +114,7 @@ class RunTests: FailableTestCase {
         XCTAssertEqual(iconsInInfoPlistAfterRun.primaryIcon, expectedPrimaryIcon)
         XCTAssertEqual(iconsInInfoPlistAfterRun.alternateIcons, expectedAlternateIcons)
 
-        // 3) Verifies the copied files
+        // 3) Verify the copied files
 
         let iconFileNames = try arguments.assetCatalog.listAppIconSets().map { $0.enumerateImageFiles().map { $0.destination } }
         let expectedIconFiles = merge(iconFileNames)
@@ -122,6 +122,11 @@ class RunTests: FailableTestCase {
         for expectedIconFile in expectedIconFiles {
             XCTAssertTrue(arguments.appBundle.containsFile(named: expectedIconFile), "The '\(expectedIconFile)' file wasn't copied")
         }
+
+        // 4) Verified Deleted Files
+
+        let deletedIconPath = basePath + "AppBundle/AppIconOld@2x.png"
+        XCTAssertFalse(FileManager.default.fileExists(atPath: deletedIconPath))
 
     }
 

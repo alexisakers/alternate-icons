@@ -9,6 +9,9 @@ enum AltError: String, LocalizedError {
     /// The Info.plist file could not be read.
     case noInfoPlist = "The Info.plist file could not be read."
 
+    /// The Info.plist file is not a valid XML Property List.
+    case invalidInfoPlist = "The Info.plist file is not a valid XML Property List."
+
     /// The asset catalog could not be read.
     case noAssetCatalog = "The asset catalog could not be read."
 

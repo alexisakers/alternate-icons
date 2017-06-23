@@ -11,7 +11,7 @@ public enum Script {
     /// The arguments required to execute the program.
     ///
 
-    public struct Arguments: Equatable {
+    public struct Arguments {
 
         /// The information plist file.
         let infoPlist: InfoPlist
@@ -22,10 +22,6 @@ public enum Script {
         /// The app bundle.
         let appBundle: Folder
 
-        public static func == (lhs: Arguments, rhs: Arguments) -> Bool {
-            return lhs.infoPlist == rhs.infoPlist && lhs.assetCatalog == rhs.assetCatalog && lhs.appBundle == rhs.appBundle
-        }
-
     }
 
 
@@ -34,7 +30,7 @@ public enum Script {
     ///
     /// Reads the arguments from the current context.
     ///
-    /// - note: The basePath parameter should only be used for unit testing.
+    /// - note: The basePath parameter must only be used for unit testing.
     ///
 
     public static func readArguments(resolvingAgainst basePath: String = "") throws -> Arguments {
@@ -93,45 +89,9 @@ public enum Script {
             throw AltError.noPrimaryIconSet
         }
 
-        let primaryIconSet = appIconSets.remove(at: primaryIndex)
-        let alternateIconSets = appIconSets
+        // 2) Copy all icons into app bundle
 
-
-        // 2) Cleanup
-
-        if let infoPlistContents = arguments.infoPlist.parseIcons() {
-
-            let removedAlternateIcons = infoPlistContents.alternateIcons.filter { icon in !alternateIconSets.contains(where: { $0.name == icon.name }) }
-
-            for removedAlternateIcon in removedAlternateIcons {
-
-                step("Removing deleted \(removedAlternateIcon.name) icons")
-
-                for removedImagePath in removedAlternateIcon.files {
-
-                    let destinationPath = arguments.appBundle.path.appending(pathComponent: removedImagePath + ".png")
-
-                    if FileManager.default.fileExists(atPath: destinationPath) {
-                        try FileManager.default.removeItem(atPath: destinationPath)
-                    }
-
-                }
-
-            }
-
-        }
-
-
-        // 3) Update Info.plist
-
-        step("Updating Info.plist with new icons")
-
-        arguments.infoPlist.update(primaryIcon: primaryIconSet, alternateIcons: alternateIconSets)
-        try arguments.infoPlist.commitChanges()
-
-        // 4) Copy all icons into app bundle
-
-        let iconImagesNames = try arguments.assetCatalog.listAppIconSets().map { $0.enumerateImageFiles() }
+        let iconImagesNames = appIconSets.map { $0.enumerateImageFiles() }
         let iconImages = merge(iconImagesNames)
 
         step("Copying \(iconImages.count) icons into place")
@@ -147,6 +107,44 @@ public enum Script {
             try FileManager.default.copyItem(atPath: image.source.path, toPath: destinationPath)
 
         }
+
+        // 3) Cleanup
+
+        cleanup: if let infoPlistContents = arguments.infoPlist.parseIcons() {
+
+            var oldImagesList = infoPlistContents.alternateIcons.map { $0.files }
+            oldImagesList.append(infoPlistContents.primaryIcon.files)
+
+            let oldImages = merge(oldImagesList)
+            let removedIcons = oldImages.filter { oldImage in !iconImages.contains(where: { $0.destination == oldImage }) }
+
+            guard removedIcons.count > 0 else {
+                break cleanup
+            }
+
+            step("Removing \(removedIcons.count) deleted icons")
+
+            for removedIcon in removedIcons {
+
+                let destinationPath = arguments.appBundle.path.appending(pathComponent: removedIcon)
+
+                if FileManager.default.fileExists(atPath: destinationPath) {
+                    try FileManager.default.removeItem(atPath: destinationPath)
+                }
+
+            }
+
+        }
+
+        // 4) Update Info.plist
+
+        step("Updating Info.plist with new icons")
+
+        let primaryIconSet = appIconSets.remove(at: primaryIndex)
+        let alternateIconSets = appIconSets
+
+        arguments.infoPlist.update(primaryIcon: primaryIconSet, alternateIcons: alternateIconSets)
+        try arguments.infoPlist.commitChanges()
 
     }
 
