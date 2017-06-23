@@ -5,7 +5,7 @@
 - Fix an issue that stopped embedding when a variant of an icon set was not filled (#1)
 - Improve deleted icons cleanup: faster and less complex
 - Improve error handling
-- Fix download link in README
+- Improve README
 
 ## [2017-06-23] 1.0.1 - Giant Panda
 
