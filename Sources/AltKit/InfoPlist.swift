@@ -59,11 +59,11 @@ class InfoPlist {
 
         }
 
-        let primaryFiles = primaryIcon.enumerateImageFiles().map { $0.destination.excludingExtension }
+        let primaryIconFiles = primaryIcon.enumerateImageFiles().map { $0.destination.excludingExtension }
 
         let dictionary: [AnyHashable: Any] = [
             InfoPlist.primaryIconKey: [
-                InfoPlist.iconFilesKey: primaryFiles
+                InfoPlist.iconFilesKey: primaryIconFiles
             ],
             InfoPlist.alternateIconsKey: alternateIconsFiles
         ]

@@ -55,7 +55,7 @@ class AppIconSet {
 
         let contentsJSON = try folder.file(named: "Contents.json")
         let contentsData = try contentsJSON.read()
-        let imagesArray: [Image] = try unbox(data: contentsData, atKeyPath: "images")
+        let imagesArray: [Image] = try unbox(data: contentsData, atKeyPath: "images", allowInvalidElements: true)
 
         self.images = Set<Image>(imagesArray)
         self.folder = folder
@@ -82,7 +82,7 @@ class AppIconSet {
             }
 
             let designationIdiom = image.idiom == "ipad" ? "~ipad" : ""
-            let destinationScale = image.scale != "1x" ? "@" + image.scale : ""
+            let destinationScale = image.scale == "1x" ? "" : "@" + image.scale
 
             let destination = name + image.size + destinationScale + designationIdiom + ".png"
 
