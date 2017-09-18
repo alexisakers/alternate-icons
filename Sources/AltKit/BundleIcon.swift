@@ -27,31 +27,17 @@ extension InfoPlist {
     ///
     /// Parses the icon information contained in the `Info.plist`.
     ///
-    /// - returns: The primary icon and its alternate icons
+    /// - returns: The alternate icons in the `Info.plist`.
     ///
 
-    func parseIcons() -> (primaryIcon: BundleIcon, alternateIcons: Set<BundleIcon>)? {
+    func parseIcons() -> Set<BundleIcon>? {
 
         guard let icons = infoDictionary[InfoPlist.iconsKey] as? [AnyHashable: Any] else {
             return nil
         }
 
-        // 1) Primary icon
-
-        guard let primaryIconInfo = icons[InfoPlist.primaryIconKey] as? [AnyHashable: Any] else {
-            return nil
-        }
-
-        guard let primaryIconFiles = primaryIconInfo[InfoPlist.iconFilesKey] as? [String] else {
-            return nil
-        }
-
-        let primaryIcon = BundleIcon(name: "AppIcon", files: primaryIconFiles)
-
-        // 2) Alternate icons
-
         guard let alternateIconsDictionary = icons[InfoPlist.alternateIconsKey] as? [String: [AnyHashable: Any]] else {
-            return (primaryIcon, [])
+            return nil
         }
 
         let alternateIconsArray: [BundleIcon] = alternateIconsDictionary.flatMap {
@@ -65,7 +51,7 @@ extension InfoPlist {
         }
         
         let alternateIcons = Set<BundleIcon>(alternateIconsArray)
-        return (primaryIcon, alternateIcons)
+        return alternateIcons
         
     }
 

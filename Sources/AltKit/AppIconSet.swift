@@ -2,7 +2,7 @@ import Foundation
 import Files
 
 ///
-/// The source images for the different sizes and resolutions of your iOS app icons.
+/// A set of source images for the different sizes and resolutions of your iOS app icon.
 ///
 
 class AppIconSet {
@@ -14,7 +14,7 @@ class AppIconSet {
     struct Image: Decodable {
 
         /// The name of the `.png` file.
-        let filename: String
+        let filename: String?
 
         /// The idiom of the icon.
         let idiom: String
@@ -34,7 +34,7 @@ class AppIconSet {
     let folder: Folder
 
     /// The variants of the icon.
-    let images: Set<Image>
+    let images: [Image]
 
     /// The name of the icon set.
     var name: String {
@@ -43,6 +43,10 @@ class AppIconSet {
     
 
     // MARK: - Lifecycle
+
+    private struct RawAppIconSet: Decodable {
+        let images: [AppIconSet.Image]
+    }
 
     ///
     /// Creates an app icon set reference.
@@ -54,9 +58,9 @@ class AppIconSet {
 
         let contentsJSON = try folder.file(named: "Contents.json")
         let contentsData = try contentsJSON.read()
-        let imagesArray = try JSONDecoder().decode([Image].self, from: contentsData)
+        let rawIconSet = try JSONDecoder().decode(RawAppIconSet.self, from: contentsData)
 
-        self.images = Set<Image>(imagesArray)
+        self.images = rawIconSet.images.filter { $0.filename != nil }
         self.folder = folder
 
     }
@@ -76,7 +80,7 @@ class AppIconSet {
 
         for image in images {
 
-            guard let source = try? folder.file(named: image.filename) else {
+            guard let source = try? folder.file(named: image.filename!) else {
                 continue
             }
 
@@ -98,11 +102,7 @@ class AppIconSet {
 
 // MARK: - AppIconSet.Image + Hashable
 
-extension AppIconSet.Image: Hashable {
-
-    var hashValue: Int {
-        return filename.hashValue ^ idiom.hashValue ^ size.hashValue ^ scale.hashValue
-    }
+extension AppIconSet.Image: Equatable {
 
     static func == (lhs: AppIconSet.Image, rhs: AppIconSet.Image) -> Bool {
         return lhs.filename == rhs.filename && lhs.idiom == rhs.idiom && lhs.size == rhs.size && lhs.scale == rhs.scale

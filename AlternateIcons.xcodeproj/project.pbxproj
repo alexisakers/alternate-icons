@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		553880691F70341800B98096 /* TestFixtures in Resources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* TestFixtures */; };
 		OBJ_39 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_45 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* Package.swift */; };
 		OBJ_51 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* main.swift */; };
@@ -268,6 +269,7 @@
 			buildPhases = (
 				OBJ_63 /* Sources */,
 				OBJ_68 /* Frameworks */,
+				553880681F70341300B98096 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -377,6 +379,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		553880681F70341300B98096 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				553880691F70341800B98096 /* TestFixtures in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		OBJ_38 /* Sources */ = {

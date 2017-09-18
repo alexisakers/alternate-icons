@@ -58,30 +58,52 @@ class InfoPlistTests: FailableTestCase {
 
     func testUpdatingExistingInfo() throws {
 
-        var icons = try assetCatalog.listAppIconSets()
+        let icons = try assetCatalog.listAppIconSets()
+        alternateIconsInfo.update(alternateIcons: icons)
 
-        guard let primaryIndex = icons.index(where: { $0.name == "AppIcon" }) else {
-            XCTFail("No primary app icon.")
-            return
-        }
-
-        let primaryIcon = icons.remove(at: primaryIndex)
-        alternateIconsInfo.update(primaryIcon: primaryIcon, alternateIcons: icons)
-
-        guard let iconInfo = alternateIconsInfo.parseIcons() else {
+        guard let alternateIcons = alternateIconsInfo.parseIcons() else {
             XCTFail("Could not parse icons.")
             return
         }
 
-        let expectedPrimaryIcon = BundleIcon(name: "AppIcon", files: [])
-
         let expectedAlternateIcons: Set<BundleIcon> = [
-            BundleIcon(name: "Light", files: []),
-            BundleIcon(name: "Sombre", files: [])
+            BundleIcon(name: "AppIcon", files: makeFilesList(for: "AppIcon")),
+            BundleIcon(name: "Light", files: makeFilesList(for: "Light")),
+            BundleIcon(name: "Sombre", files: makeFilesList(for: "Sombre"))
         ]
 
-        XCTAssertEqual(iconInfo.primaryIcon, expectedPrimaryIcon)
-        XCTAssertEqual(iconInfo.alternateIcons, expectedAlternateIcons)
+        XCTAssertEqual(alternateIcons, expectedAlternateIcons)
+
+    }
+
+    func makeFilesList(for iconName: String) -> [String] {
+
+        return [
+            "\(iconName)20x20@2x",
+            "\(iconName)20x20@3x",
+            "\(iconName)29x29",
+            "\(iconName)29x29@2x",
+            "\(iconName)29x29@3x",
+            "\(iconName)40x40@2x",
+            "\(iconName)40x40@3x",
+            "\(iconName)57x57",
+            "\(iconName)57x57@2x",
+            "\(iconName)60x60@2x",
+            "\(iconName)60x60@3x",
+            "\(iconName)20x20~ipad",
+            "\(iconName)20x20@2x~ipad",
+            "\(iconName)29x29~ipad",
+            "\(iconName)29x29@2x~ipad",
+            "\(iconName)40x40~ipad",
+            "\(iconName)40x40@2x~ipad",
+            "\(iconName)50x50~ipad",
+            "\(iconName)50x50@2x~ipad",
+            "\(iconName)72x72@2x~ipad",
+            "\(iconName)72x72~ipad",
+            "\(iconName)76x76@2x~ipad",
+            "\(iconName)76x76~ipad",
+            "\(iconName)83.5x83.5@2x~ipad"
+        ]
 
     }
 

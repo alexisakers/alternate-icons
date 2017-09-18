@@ -39,11 +39,10 @@ class InfoPlist {
     ///
     /// Updates the Info.plist file with a new set of icons.
     ///
-    /// - parameter primaryIcon: The new primary icon.
     /// - parameter alternateIcons: The list of alternate app icons to use.
     ///
 
-    func update(primaryIcon: AppIconSet, alternateIcons: Set<AppIconSet>) {
+    func update(alternateIcons: Set<AppIconSet>) {
 
         let alternateIconsFiles = alternateIcons.reduce([AnyHashable: Any]()) {
             result, next in
@@ -59,12 +58,7 @@ class InfoPlist {
 
         }
 
-        let primaryIconFiles = primaryIcon.enumerateImageFiles().map { $0.destination.excludingExtension }
-
         let dictionary: [AnyHashable: Any] = [
-            InfoPlist.primaryIconKey: [
-                InfoPlist.iconFilesKey: primaryIconFiles
-            ],
             InfoPlist.alternateIconsKey: alternateIconsFiles
         ]
 
@@ -80,10 +74,8 @@ class InfoPlist {
     ///
 
     func commitChanges() throws {
-
         let plistData = try PropertyListSerialization.data(fromPropertyList: infoDictionary, format: .xml, options: 0)
         try file.write(data: plistData)
-
     }
 
 }
@@ -95,9 +87,6 @@ extension InfoPlist {
 
     /// The app icons dictionary.
     static var iconsKey = "CFBundleIcons"
-
-    /// The primary icon dictionary.
-    static var primaryIconKey = "CFBundlePrimaryIcon"
 
     /// The alternate icon dictionary.
     static var alternateIconsKey = "CFBundleAlternateIcons"
