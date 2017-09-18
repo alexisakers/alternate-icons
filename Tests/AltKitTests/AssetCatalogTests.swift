@@ -79,33 +79,18 @@ class AssetCatalogTests: FailableTestCase {
         }
 
         let expectedNamesSet: Set<String> = [
-            "AppIcon20x20@2x.png",
-            "AppIcon20x20@3x.png",
-            "AppIcon29x29.png",
-            "AppIcon29x29@2x.png",
-            "AppIcon29x29@3x.png",
-            "AppIcon40x40@2x.png",
-            "AppIcon40x40@3x.png",
-            "AppIcon57x57.png",
-            "AppIcon57x57@2x.png",
-            "AppIcon60x60@2x.png",
-            "AppIcon60x60@3x.png",
-            "AppIcon20x20~ipad.png",
-            "AppIcon20x20@2x~ipad.png",
-            "AppIcon29x29~ipad.png",
-            "AppIcon29x29@2x~ipad.png",
-            "AppIcon40x40~ipad.png",
-            "AppIcon40x40@2x~ipad.png",
-            "AppIcon50x50~ipad.png",
-            "AppIcon50x50@2x~ipad.png",
-            "AppIcon72x72@2x~ipad.png",
-            "AppIcon72x72~ipad.png",
-            "AppIcon76x76@2x~ipad.png",
-            "AppIcon76x76~ipad.png",
-            "AppIcon83.5x83.5@2x~ipad.png"
+            "AppIcon20x20",
+            "AppIcon29x29",
+            "AppIcon40x40",
+            "AppIcon57x57",
+            "AppIcon60x60",
+            "AppIcon50x50",
+            "AppIcon72x72",
+            "AppIcon76x76",
+            "AppIcon83.5x83.5"
         ]
 
-        let names = appIconSet.enumerateImageFiles().map { $0.destination }
+        let names = appIconSet.enumerateImageFiles(filter: { _ in return true }).map { $0.name }
         let namesSet = Set<String>(names)
 
         XCTAssertEqual(namesSet, expectedNamesSet)

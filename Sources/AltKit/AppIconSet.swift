@@ -1,6 +1,9 @@
 import Foundation
 import Files
 
+/// The list of files contained in an app icon set.
+typealias AppIconFiles = [(name: String, source: File, destination: String)]
+
 ///
 /// A set of source images for the different sizes and resolutions of your iOS app icon.
 ///
@@ -71,14 +74,22 @@ class AppIconSet {
     ///
     /// Enumerates the image files.
     ///
+    /// - parameter filter: Whether the image should be included.
+    ///
     /// Returns the source file and the name of the destination file in the app bundle.
     ///
 
-    func enumerateImageFiles() -> [(source: File, destination: String)] {
+    func enumerateImageFiles(filter: (Image) -> Bool) -> AppIconFiles {
 
-        var files = [(source: File, destination: String)]()
+        var files = AppIconFiles()
 
-        for image in images {
+        for image in images.filter(filter) {
+
+            let fileName = name + image.size
+
+            if files.contains(where: { $0.name == fileName }) {
+                continue
+            }
 
             guard let source = try? folder.file(named: image.filename!) else {
                 continue
@@ -87,9 +98,9 @@ class AppIconSet {
             let designationIdiom = image.idiom == "ipad" ? "~ipad" : ""
             let destinationScale = image.scale == "1x" ? "" : "@" + image.scale
 
-            let destination = name + image.size + destinationScale + designationIdiom + ".png"
+            let destination = fileName + destinationScale + designationIdiom + ".png"
 
-            let item = (source, destination)
+            let item = (fileName, source, destination)
             files.append(item)
 
         }
