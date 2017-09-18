@@ -1,6 +1,5 @@
 import Foundation
 import Files
-import Unbox
 
 ///
 /// The source images for the different sizes and resolutions of your iOS app icons.
@@ -12,7 +11,7 @@ class AppIconSet {
     /// An image from the set.
     ///
 
-    struct Image {
+    struct Image: Decodable {
 
         /// The name of the `.png` file.
         let filename: String
@@ -55,7 +54,7 @@ class AppIconSet {
 
         let contentsJSON = try folder.file(named: "Contents.json")
         let contentsData = try contentsJSON.read()
-        let imagesArray: [Image] = try unbox(data: contentsData, atKeyPath: "images", allowInvalidElements: true)
+        let imagesArray = try JSONDecoder().decode([Image].self, from: contentsData)
 
         self.images = Set<Image>(imagesArray)
         self.folder = folder
@@ -96,23 +95,6 @@ class AppIconSet {
     }
 
 }
-
-
-// MARK: - AppIconSet.Image + Unboxable
-
-extension AppIconSet.Image: Unboxable {
-
-    init(unboxer: Unboxer) throws {
-
-        filename = try unboxer.unbox(key: "filename")
-        idiom = try unboxer.unbox(key: "idiom")
-        size = try unboxer.unbox(key: "size")
-        scale = try unboxer.unbox(key: "scale")
-
-    }
-
-}
-
 
 // MARK: - AppIconSet.Image + Hashable
 
