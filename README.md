@@ -66,7 +66,7 @@ UIApplication.shared.setAlternateIconName(iconName) { error in
 }
 ~~~
 
-Where `iconName` is the name of an icon set in your alternate icons asset catalog.
+Where `iconName` is the name of an icon set in your alternate icons asset catalog or `nil` if you want to return to the default icon.
 
 > &#128218; Read the documentation on [developer.apple.com](https://developer.apple.com/documentation/uikit/uiapplication/2806818-setalternateiconname)
 
