@@ -86,7 +86,7 @@ public enum Script {
 
         // 2) Copy all icons into app bundle
 
-        let iconImagesNames = alternateIconSets.map { $0.enumerateImageFiles(filter: { $0.idiom == "iphone" || $0.idiom == "ipad" }) }
+        let iconImagesNames = alternateIconSets.map { $0.enumerateImageFiles(unique: false) { $0.idiom == "iphone" || $0.idiom == "ipad" } }
         let iconImages = merge(iconImagesNames)
 
         step("Copying \(iconImages.count) icons into place")
@@ -103,34 +103,7 @@ public enum Script {
 
         }
 
-        // 3) Cleanup
-
-        cleanup: if let infoPlistContents = arguments.infoPlist.parseIcons() {
-
-            let oldImagesList = infoPlistContents.map { $0.files }
-            let oldImages = merge(oldImagesList)
-            
-            let removedIcons = oldImages.filter { oldImage in !iconImages.contains(where: { $0.destination == oldImage }) }
-
-            guard removedIcons.count > 0 else {
-                break cleanup
-            }
-
-            step("Removing \(removedIcons.count) deleted icons")
-
-            for removedIcon in removedIcons {
-
-                let destinationPath = arguments.appBundle.path.appending(pathComponent: removedIcon)
-
-                if FileManager.default.fileExists(atPath: destinationPath) {
-                    try FileManager.default.removeItem(atPath: destinationPath)
-                }
-
-            }
-
-        }
-
-        // 4) Update Info.plist
+        // 3) Update Info.plist
 
         step("Updating Info.plist with new icons")
 

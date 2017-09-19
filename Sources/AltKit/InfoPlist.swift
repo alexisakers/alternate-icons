@@ -69,7 +69,7 @@ class InfoPlist {
         return alternateIcons.reduce([AnyHashable: Any]()) {
             result, next in
 
-            let files = next.enumerateImageFiles(filter: filter).map { $0.name }
+            let files = next.enumerateImageFiles(unique: true, filter: filter).map { $0.name }
 
             var resultCopy = result
             resultCopy[next.name] = [

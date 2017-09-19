@@ -108,3 +108,54 @@ class InfoPlistTests: FailableTestCase {
     }
 
 }
+
+// MARK: - Info Plist Parsing
+
+extension InfoPlist {
+
+    ///
+    /// Parses the icon information contained in the `Info.plist`.
+    ///
+    /// - returns: The alternate icons in the `Info.plist`.
+    ///
+
+    func parseIcons() -> Set<BundleIcon>? {
+
+        guard let iphoneIcons = parseIcons(forVariant: InfoPlist.iconsKey) else {
+            return nil
+        }
+
+        guard let ipadIcons = parseIcons(forVariant: InfoPlist.ipadIconsKey) else {
+            return nil
+        }
+
+        let alternateIconsArray = merge([iphoneIcons, ipadIcons])
+
+        let alternateIcons = Set<BundleIcon>(alternateIconsArray)
+        return alternateIcons
+
+    }
+
+    private func parseIcons(forVariant variant: String) -> [BundleIcon]? {
+
+        guard let icons = infoDictionary[variant] as? [AnyHashable: Any] else {
+            return nil
+        }
+
+        guard let alternateIconsDictionary = icons[InfoPlist.alternateIconsKey] as? [String: [AnyHashable: Any]] else {
+            return nil
+        }
+
+        return alternateIconsDictionary.flatMap {
+
+            guard let files = $0.value[InfoPlist.iconFilesKey] as? [String] else {
+                return nil
+            }
+
+            return BundleIcon(name: $0.key, files: files)
+
+        }
+
+    }
+
+}

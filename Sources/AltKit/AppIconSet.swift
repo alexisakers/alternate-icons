@@ -79,7 +79,7 @@ class AppIconSet {
     /// Returns the source file and the name of the destination file in the app bundle.
     ///
 
-    func enumerateImageFiles(filter: (Image) -> Bool) -> AppIconFiles {
+    func enumerateImageFiles(unique: Bool, filter: (Image) -> Bool) -> AppIconFiles {
 
         var files = AppIconFiles()
 
@@ -87,7 +87,7 @@ class AppIconSet {
 
             let fileName = name + image.size
 
-            if files.contains(where: { $0.name == fileName }) {
+            if unique && files.contains(where: { $0.name == fileName }) {
                 continue
             }
 

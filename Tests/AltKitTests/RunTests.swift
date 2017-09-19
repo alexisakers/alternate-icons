@@ -114,7 +114,10 @@ class RunTests: FailableTestCase {
 
         // 3) Verify the copied files
 
-        let iconFileNames = try arguments.assetCatalog.listAppIconSets().map { $0.enumerateImageFiles(filter: { _ in return true }).map { $0.destination } }
+        let iconFileNames = try arguments.assetCatalog.listAppIconSets().map {
+            $0.enumerateImageFiles(unique: false) { _ in return true }.map { $0.destination }
+        }
+        
         let expectedIconFiles = merge(iconFileNames)
 
         for expectedIconFile in expectedIconFiles {

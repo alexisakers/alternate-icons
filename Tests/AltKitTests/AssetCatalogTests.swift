@@ -90,7 +90,7 @@ class AssetCatalogTests: FailableTestCase {
             "AppIcon83.5x83.5"
         ]
 
-        let names = appIconSet.enumerateImageFiles(filter: { _ in return true }).map { $0.name }
+        let names = appIconSet.enumerateImageFiles(unique: true, filter: { _ in return true }).map { $0.name }
         let namesSet = Set<String>(names)
 
         XCTAssertEqual(namesSet, expectedNamesSet)
