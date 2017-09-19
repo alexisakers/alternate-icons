@@ -34,7 +34,7 @@ To set up AlternateIcons as an Xcode build phase, do the following:
 
 2. Create a new Xcode asset catalog to store your icons, and **do not add it to your target**.
 
-> **NOTE** In this example, we'll name the catalog "AlternateIcons"
+> **NOTE** In this example, we'll name the catalog "AlternateIcons".
 
 3. Add your alternate app icons to this asset catalog, using the '*New iOS App Icon*' template.
 
@@ -58,7 +58,7 @@ To set up AlternateIcons as an Xcode build phase, do the following:
 
 ### Changing the icon
 
-You can now change the icon in your code using: 
+You can now change the icon from your code using: 
 
 ~~~swift
 UIApplication.shared.setAlternateIconName(iconName) { error in
@@ -78,10 +78,10 @@ A demo project is included in the `Demo/` folder, to help you set up your app.
 
 Every time you build your app, the script will perform the following steps:
 
-1. Infer the location of build artefacts from the environment variables passed by Xcode
+1. Get the build products location from environment variables passed by Xcode
 2. Parse the Asset Catalog to build a list of icons to embed
 3. Copy the alternate icon files in the app bundle
-4. Update the `CFBundleIcon` and `CFBundleIcon~ipad` sections of the Info.plist with the list of alternate icon files
+4. Update the `CFBundleIcon` and `CFBundleIcon~ipad` sections of the Info.plist with the list of alternate icon file names
 
 ## Authors
 
