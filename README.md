@@ -74,6 +74,8 @@ Where `iconName` is the name of an icon set in your alternate icons asset catalo
 
 A demo project is included in the `Demo/` folder, to help you set up your app.
 
+Make sure to [install](#installation) AlternateIcons before you build it.
+
 ## How it works
 
 Every time you build your app, the script will perform the following steps:
