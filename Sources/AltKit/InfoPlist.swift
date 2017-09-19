@@ -44,7 +44,7 @@ class InfoPlist {
 
     func update(alternateIcons: Set<AppIconSet>) {
 
-        let alternateIconsFiles = getAlternateIconFiles(in: alternateIcons) { $0.idiom != "ipad" }
+        let alternateIconsFiles = getAlternateIconFiles(in: alternateIcons) { $0.idiom == "iphone" }
         let alternateiPadIconsFiles = getAlternateIconFiles(in: alternateIcons) { $0.idiom == "ipad" }
 
         var icons = infoDictionary[InfoPlist.iconsKey] as? [AnyHashable: Any] ?? [:]
