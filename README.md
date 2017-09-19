@@ -2,16 +2,16 @@
 
 [![Build Status](https://travis-ci.org/alexaubry/alternate-icons.svg?branch=master)](https://travis-ci.org/alexaubry/alternate-icons)
 [![Requires macOS 10.10+](https://img.shields.io/badge/macOS-10.10+-9D88A2.svg)]()
-[![Requires Swift 3.1](https://img.shields.io/badge/Swift-3.1-ee4f37.svg)]()
-[![Contact : @leksantoine](https://img.shields.io/badge/Contact-%40leksantoine-6C7A89.svg)](https://twitter.com/aleksaubry)
+[![Requires Swift 4.0](https://img.shields.io/badge/Swift-4.0-ee4f37.svg)]()
+[![Requires Xcode 9](https://img.shields.io/badge/Xcode-9%20and%20later-blue.svg)]()
 
-AlternateIcons is a Swift script that allows you to use Xcode Asset Catalogs to add alternate app icons to your iOS app. It takes care of copying the icon assets to your app bundle and correctly updating the Info.plist. No more manual setup required!
+AlternateIcons is a Swift script that automates adding alternate app icons to your iOS app. Group your alternate icons inside an asset catalog, add a build phase and let the script set up your app. No more manual maintenance required!
 
 ## Installation
 
-### From a Pre-built Bottle
+### From a Pre-built Archive
 
-You can download a pre-compiled bottle of the script for the version you want to install in the [Releases](https://github.com/alexaubry/alternate-icons/releases) section of this repository.
+You can download a pre-compiled binary for the version you want to install in the [Releases](https://github.com/alexaubry/alternate-icons/releases) section of this repository.
 
 Once the archive is expanded, run the `install.sh` script to install the script on your system.
 
@@ -30,13 +30,13 @@ make install
 
 To set up AlternateIcons as an Xcode build phase, do the following:
 
-1. Create a new Xcode asset catalog to store your icons, and **do not add it to your target**.
+1. Add your main icon to your main asset catalog.
 
-2. Add your primary and alternate app icons to this asset catalog, using the '*New iOS App Icon*' template.
+2. Create a new Xcode asset catalog to store your icons, and **do not add it to your target**.
 
-    **NOTE**: The primary icon needs to be named `AppIcon`.
+> **NOTE** In this example, we'll name the catalog "AlternateIcons"
 
-3. If you're currently using an asset catalog to store your primary icon, in the General section of your project target, select 'Do not use Asset Catalog' in the App Icon Source setting.
+3. Add your alternate app icons to this asset catalog, using the '*New iOS App Icon*' template.
 
 4. In the Build Phases section of your project target, add a new Run Script phase. The script should be:
 
@@ -44,39 +44,51 @@ To set up AlternateIcons as an Xcode build phase, do the following:
     embed-alternate-icons
     ~~~
 
-    You now need to specify the path to the Asset Catalog you've created at step *1* under "Input Files", e.g.:
+    You now need to specify the path to the Asset Catalog you've created at step *2* under "Input Files", for example:
     
     ~~~
-    $(SRCROOT)/Icons.xcassets
+    $(SRCROOT)/AlternateIcons.xcassets
     ~~~
 
-    **NOTE**: This Run Script phase needs to be situated after all the 'Copy Bundle Resources' and 'Copy Files' phases.
+    **NOTE**: This Run Script phase needs to be the last build phase in your build.
     
 5. Build your app.
 
 *Et voilà*! All the icons have automatically been embedded into your app and are ready for use!
 
+### Changing the icon
+
 You can now change the icon in your code using: 
 
 ~~~swift
-UIApplication.shared.setAlternateIconName("IconName", completionHandler: nil)
+UIApplication.shared.setAlternateIconName(iconName) { error in
+    // handle the result
+}
 ~~~
 
-> &#128218; Documentation: read on [developer.apple.com](https://developer.apple.com/documentation/uikit/uiapplication/2806818-setalternateiconname)
+Where `iconName` is the name of an icon set in your alternate icons asset catalog.
+
+> &#128218; Read the documentation on [developer.apple.com](https://developer.apple.com/documentation/uikit/uiapplication/2806818-setalternateiconname)
+
+## Demo
+
+A demo project is included in the `Demo/` folder, to help you set up your app.
 
 ## How it works
 
 Every time you build your app, the script will perform the following steps:
 
 1. Infer the location of build artefacts from the environment variables passed by Xcode
-2. Parse the Asset Catalog to get the list of icons to embed
-3. Copy the new icons in the app bundle
-4. Delete any icon you've removed from the Asset Catalog
-5. Update the `CFBundleIcon` section of the Info.plist in the app bundle (not in your source code, to avoid trouble with version control)
+2. Parse the Asset Catalog to build a list of icons to embed
+3. Copy the alternate icon files in the app bundle
+4. Update the `CFBundleIcon` and `CFBundleIcon~ipad` sections of the Info.plist with the list of alternate icon files
+
+## Authors
+
+Alexis Aubry, me@alexaubry.fr <[@_alexaubry](https://twitter.com/_alexaubry)>
 
 ## Acknowledgements
 
 AlternateIcons uses these open source libraries:
 
-- [Unbox](https://github.com/JohnSundell/Unbox) by **@JohnSundell**
 - [Files](https://github.com/JohnSundell/Files) by **@JohnSundell**
