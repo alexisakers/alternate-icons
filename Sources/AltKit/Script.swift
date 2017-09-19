@@ -86,7 +86,7 @@ public enum Script {
 
         // 2) Copy all icons into app bundle
 
-        let iconImagesNames = alternateIconSets.map { $0.enumerateImageFiles(filter: { _ in return true }) }
+        let iconImagesNames = alternateIconSets.map { $0.enumerateImageFiles(filter: { $0.idiom == "iphone" || $0.idiom == "ipad" }) }
         let iconImages = merge(iconImagesNames)
 
         step("Copying \(iconImages.count) icons into place")
