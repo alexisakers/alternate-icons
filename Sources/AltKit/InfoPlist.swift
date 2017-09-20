@@ -39,16 +39,37 @@ class InfoPlist {
     ///
     /// Updates the Info.plist file with a new set of icons.
     ///
-    /// - parameter primaryIcon: The new primary icon.
     /// - parameter alternateIcons: The list of alternate app icons to use.
     ///
 
-    func update(primaryIcon: AppIconSet, alternateIcons: Set<AppIconSet>) {
+    func update(alternateIcons: Set<AppIconSet>) {
 
-        let alternateIconsFiles = alternateIcons.reduce([AnyHashable: Any]()) {
+        let alternateIconsFiles = getAlternateIconFiles(in: alternateIcons) { $0.idiom == "iphone" }
+        let alternateiPadIconsFiles = getAlternateIconFiles(in: alternateIcons) { $0.idiom == "ipad" }
+
+        var icons = infoDictionary[InfoPlist.iconsKey] as? [AnyHashable: Any] ?? [:]
+        var ipadIcons = infoDictionary[InfoPlist.ipadIconsKey] as? [AnyHashable: Any] ?? [:]
+
+        icons[InfoPlist.alternateIconsKey] = alternateIconsFiles
+        ipadIcons[InfoPlist.alternateIconsKey] = alternateiPadIconsFiles
+
+        infoDictionary[InfoPlist.iconsKey] = icons
+        infoDictionary[InfoPlist.ipadIconsKey] = ipadIcons
+
+    }
+
+    ///
+    /// Get the alternate icon files dictionary for the given subset of icons.
+    ///
+    /// - parameter alternateIc
+    ///
+
+    func getAlternateIconFiles(in alternateIcons: Set<AppIconSet>, filter: (AppIconSet.Image) -> Bool) -> [AnyHashable: Any] {
+
+        return alternateIcons.reduce([AnyHashable: Any]()) {
             result, next in
 
-            let files = next.enumerateImageFiles().map { $0.destination.excludingExtension }
+            let files = next.enumerateImageFiles(unique: true, filter: filter).map { $0.name }
 
             var resultCopy = result
             resultCopy[next.name] = [
@@ -58,17 +79,6 @@ class InfoPlist {
             return resultCopy
 
         }
-
-        let primaryIconFiles = primaryIcon.enumerateImageFiles().map { $0.destination.excludingExtension }
-
-        let dictionary: [AnyHashable: Any] = [
-            InfoPlist.primaryIconKey: [
-                InfoPlist.iconFilesKey: primaryIconFiles
-            ],
-            InfoPlist.alternateIconsKey: alternateIconsFiles
-        ]
-
-        infoDictionary[InfoPlist.iconsKey] = dictionary
 
     }
 
@@ -80,10 +90,8 @@ class InfoPlist {
     ///
 
     func commitChanges() throws {
-
         let plistData = try PropertyListSerialization.data(fromPropertyList: infoDictionary, format: .xml, options: 0)
         try file.write(data: plistData)
-
     }
 
 }
@@ -96,8 +104,8 @@ extension InfoPlist {
     /// The app icons dictionary.
     static var iconsKey = "CFBundleIcons"
 
-    /// The primary icon dictionary.
-    static var primaryIconKey = "CFBundlePrimaryIcon"
+    /// The iPad app icons dictionary.
+    static var ipadIconsKey = "CFBundleIcons~ipad"
 
     /// The alternate icon dictionary.
     static var alternateIconsKey = "CFBundleAlternateIcons"

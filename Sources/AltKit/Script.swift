@@ -82,16 +82,11 @@ public enum Script {
         // 1) Read Asset Catalog
 
         step("Reading \(arguments.assetCatalog.folder.name) asset catalog")
-
-        var appIconSets = try arguments.assetCatalog.listAppIconSets()
-
-        guard let primaryIndex = appIconSets.index(where: { $0.name == "AppIcon" }) else {
-            throw AltError.noPrimaryIconSet
-        }
+        let alternateIconSets = try arguments.assetCatalog.listAppIconSets()
 
         // 2) Copy all icons into app bundle
 
-        let iconImagesNames = appIconSets.map { $0.enumerateImageFiles() }
+        let iconImagesNames = alternateIconSets.map { $0.enumerateImageFiles(unique: false) { $0.idiom == "iphone" || $0.idiom == "ipad" } }
         let iconImages = merge(iconImagesNames)
 
         step("Copying \(iconImages.count) icons into place")
@@ -108,42 +103,11 @@ public enum Script {
 
         }
 
-        // 3) Cleanup
-
-        cleanup: if let infoPlistContents = arguments.infoPlist.parseIcons() {
-
-            var oldImagesList = infoPlistContents.alternateIcons.map { $0.files }
-            oldImagesList.append(infoPlistContents.primaryIcon.files)
-
-            let oldImages = merge(oldImagesList)
-            let removedIcons = oldImages.filter { oldImage in !iconImages.contains(where: { $0.destination == oldImage }) }
-
-            guard removedIcons.count > 0 else {
-                break cleanup
-            }
-
-            step("Removing \(removedIcons.count) deleted icons")
-
-            for removedIcon in removedIcons {
-
-                let destinationPath = arguments.appBundle.path.appending(pathComponent: removedIcon)
-
-                if FileManager.default.fileExists(atPath: destinationPath) {
-                    try FileManager.default.removeItem(atPath: destinationPath)
-                }
-
-            }
-
-        }
-
-        // 4) Update Info.plist
+        // 3) Update Info.plist
 
         step("Updating Info.plist with new icons")
 
-        let primaryIconSet = appIconSets.remove(at: primaryIndex)
-        let alternateIconSets = appIconSets
-
-        arguments.infoPlist.update(primaryIcon: primaryIconSet, alternateIcons: alternateIconSets)
+        arguments.infoPlist.update(alternateIcons: alternateIconSets)
         try arguments.infoPlist.commitChanges()
 
     }

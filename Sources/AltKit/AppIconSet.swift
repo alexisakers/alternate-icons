@@ -1,9 +1,11 @@
 import Foundation
 import Files
-import Unbox
+
+/// The list of files contained in an app icon set.
+typealias AppIconFiles = [(name: String, source: File, destination: String)]
 
 ///
-/// The source images for the different sizes and resolutions of your iOS app icons.
+/// A set of source images for the different sizes and resolutions of your iOS app icon.
 ///
 
 class AppIconSet {
@@ -12,10 +14,10 @@ class AppIconSet {
     /// An image from the set.
     ///
 
-    struct Image {
+    struct Image: Decodable {
 
         /// The name of the `.png` file.
-        let filename: String
+        let filename: String?
 
         /// The idiom of the icon.
         let idiom: String
@@ -35,7 +37,7 @@ class AppIconSet {
     let folder: Folder
 
     /// The variants of the icon.
-    let images: Set<Image>
+    let images: [Image]
 
     /// The name of the icon set.
     var name: String {
@@ -44,6 +46,10 @@ class AppIconSet {
     
 
     // MARK: - Lifecycle
+
+    private struct RawAppIconSet: Decodable {
+        let images: [AppIconSet.Image]
+    }
 
     ///
     /// Creates an app icon set reference.
@@ -55,9 +61,9 @@ class AppIconSet {
 
         let contentsJSON = try folder.file(named: "Contents.json")
         let contentsData = try contentsJSON.read()
-        let imagesArray: [Image] = try unbox(data: contentsData, atKeyPath: "images", allowInvalidElements: true)
+        let rawIconSet = try JSONDecoder().decode(RawAppIconSet.self, from: contentsData)
 
-        self.images = Set<Image>(imagesArray)
+        self.images = rawIconSet.images.filter { $0.filename != nil }
         self.folder = folder
 
     }
@@ -68,25 +74,33 @@ class AppIconSet {
     ///
     /// Enumerates the image files.
     ///
+    /// - parameter filter: Whether the image should be included.
+    ///
     /// Returns the source file and the name of the destination file in the app bundle.
     ///
 
-    func enumerateImageFiles() -> [(source: File, destination: String)] {
+    func enumerateImageFiles(unique: Bool, filter: (Image) -> Bool) -> AppIconFiles {
 
-        var files = [(source: File, destination: String)]()
+        var files = AppIconFiles()
 
-        for image in images {
+        for image in images.filter(filter) {
 
-            guard let source = try? folder.file(named: image.filename) else {
+            let fileName = name + image.size
+
+            if unique && files.contains(where: { $0.name == fileName }) {
+                continue
+            }
+
+            guard let source = try? folder.file(named: image.filename!) else {
                 continue
             }
 
             let designationIdiom = image.idiom == "ipad" ? "~ipad" : ""
             let destinationScale = image.scale == "1x" ? "" : "@" + image.scale
 
-            let destination = name + image.size + destinationScale + designationIdiom + ".png"
+            let destination = fileName + destinationScale + designationIdiom + ".png"
 
-            let item = (source, destination)
+            let item = (fileName, source, destination)
             files.append(item)
 
         }
@@ -97,30 +111,9 @@ class AppIconSet {
 
 }
 
-
-// MARK: - AppIconSet.Image + Unboxable
-
-extension AppIconSet.Image: Unboxable {
-
-    init(unboxer: Unboxer) throws {
-
-        filename = try unboxer.unbox(key: "filename")
-        idiom = try unboxer.unbox(key: "idiom")
-        size = try unboxer.unbox(key: "size")
-        scale = try unboxer.unbox(key: "scale")
-
-    }
-
-}
-
-
 // MARK: - AppIconSet.Image + Hashable
 
-extension AppIconSet.Image: Hashable {
-
-    var hashValue: Int {
-        return filename.hashValue ^ idiom.hashValue ^ size.hashValue ^ scale.hashValue
-    }
+extension AppIconSet.Image: Equatable {
 
     static func == (lhs: AppIconSet.Image, rhs: AppIconSet.Image) -> Bool {
         return lhs.filename == rhs.filename && lhs.idiom == rhs.idiom && lhs.size == rhs.size && lhs.scale == rhs.scale

@@ -91,11 +91,10 @@ class RunTests: FailableTestCase {
 
         // 1) Run the script
 
-        let expectedPrimaryIcon = BundleIcon(name: "AppIcon", files: [])
-
         let expectedAlternateIcons: Set<BundleIcon> = [
-            BundleIcon(name: "Light", files: []),
-            BundleIcon(name: "Sombre", files: [])
+            BundleIcon(name: "AppIcon", files: makeFilesList(for: "AppIcon")),
+            BundleIcon(name: "Light", files: makeFilesList(for: "Light")),
+            BundleIcon(name: "Sombre", files: makeFilesList(for: "Sombre"))
         ]
 
         try Script.run(with: arguments)
@@ -111,12 +110,14 @@ class RunTests: FailableTestCase {
             return
         }
 
-        XCTAssertEqual(iconsInInfoPlistAfterRun.primaryIcon, expectedPrimaryIcon)
-        XCTAssertEqual(iconsInInfoPlistAfterRun.alternateIcons, expectedAlternateIcons)
+        XCTAssertEqual(iconsInInfoPlistAfterRun, expectedAlternateIcons)
 
         // 3) Verify the copied files
 
-        let iconFileNames = try arguments.assetCatalog.listAppIconSets().map { $0.enumerateImageFiles().map { $0.destination } }
+        let iconFileNames = try arguments.assetCatalog.listAppIconSets().map {
+            $0.enumerateImageFiles(unique: false) { _ in return true }.map { $0.destination }
+        }
+        
         let expectedIconFiles = merge(iconFileNames)
 
         for expectedIconFile in expectedIconFiles {
@@ -127,6 +128,37 @@ class RunTests: FailableTestCase {
 
         let deletedIconPath = basePath + "AppBundle/AppIconOld@2x.png"
         XCTAssertFalse(FileManager.default.fileExists(atPath: deletedIconPath))
+
+    }
+
+    func makeFilesList(for iconName: String) -> [String] {
+
+        return [
+            "\(iconName)20x20@2x.png",
+            "\(iconName)20x20@3x.png",
+            "\(iconName)29x29.png",
+            "\(iconName)29x29@2x.png",
+            "\(iconName)29x29@3x.png",
+            "\(iconName)40x40@2x.png",
+            "\(iconName)40x40@3x.png",
+            "\(iconName)57x57.png",
+            "\(iconName)57x57@2x.png",
+            "\(iconName)60x60@2x.png",
+            "\(iconName)60x60@3x.png",
+            "\(iconName)20x20~ipad.png",
+            "\(iconName)20x20@2x~ipad.png",
+            "\(iconName)29x29~ipad.png",
+            "\(iconName)29x29@2x~ipad.png",
+            "\(iconName)40x40~ipad.png",
+            "\(iconName)40x40@2x~ipad.png",
+            "\(iconName)50x50~ipad.png",
+            "\(iconName)50x50@2x~ipad.png",
+            "\(iconName)72x72@2x~ipad.png",
+            "\(iconName)72x72~ipad.png",
+            "\(iconName)76x76@2x~ipad.png",
+            "\(iconName)76x76~ipad.png",
+            "\(iconName)83.5x83.5@2x~ipad.png"
+        ]
 
     }
 
