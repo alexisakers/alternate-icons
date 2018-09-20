@@ -3,9 +3,9 @@ INSTALL_PATH = /usr/local/bin/embed-alternate-icons
 
 build:
 	swift package clean
-	swift package --enable-prefetching update
-	swift build --enable-prefetching -c release -Xswiftc -static-stdlib
-	
+	swift package update
+	swift build -c release -Xswiftc -static-stdlib
+
 install:
 	cp -f .build/release/AlternateIcons $(INSTALL_PATH)
 
