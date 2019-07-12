@@ -22,8 +22,9 @@
 
 /* Begin PBXBuildFile section */
 		553880691F70341800B98096 /* TestFixtures in Resources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* TestFixtures */; };
+		76B1EC0122D8B5CA003E9A9F /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1EC0022D8B5CA003E9A9F /* Package.swift */; };
+		76B1EC0322D8B5D4003E9A9F /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1EC0222D8B5D4003E9A9F /* Files.swift */; };
 		OBJ_39 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_45 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* Package.swift */; };
 		OBJ_51 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* main.swift */; };
 		OBJ_53 /* AltKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "AlternateIcons::AltKit::Product" /* AltKit.framework */; };
 		OBJ_54 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
@@ -41,7 +42,6 @@
 		OBJ_82 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* Script.swift */; };
 		OBJ_83 /* Xcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Xcode.swift */; };
 		OBJ_85 /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Files::Files::Product" /* Files.framework */; };
-		OBJ_91 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Files.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +90,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		76B1EC0022D8B5CA003E9A9F /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Package.swift; path = .build/checkouts/Files/Package.swift; sourceTree = SOURCE_ROOT; };
+		76B1EC0222D8B5D4003E9A9F /* Files.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Files.swift; path = .build/checkouts/Files/Sources/Files.swift; sourceTree = SOURCE_ROOT; };
 		"AlternateIcons::AltKit::Product" /* AltKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AltKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"AlternateIcons::AltKitTests::Product" /* AltKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = AltKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"AlternateIcons::AlternateIcons::Product" /* AlternateIcons */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = AlternateIcons; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,8 +108,6 @@
 		OBJ_22 /* InfoPlistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPlistTests.swift; sourceTree = "<group>"; };
 		OBJ_23 /* RunTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunTests.swift; sourceTree = "<group>"; };
 		OBJ_24 /* TestFixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestFixtures; sourceTree = SOURCE_ROOT; };
-		OBJ_27 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Volumes/ARA/Development/Open/alternate-icons/.build/checkouts/Files.git-6739420172119258925/Package.swift"; sourceTree = "<group>"; };
-		OBJ_28 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* AppIconSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconSet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,18 +181,18 @@
 		OBJ_25 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_26 /* Files 1.11.0 */,
+				OBJ_26 /* Files */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
-		OBJ_26 /* Files 1.11.0 */ = {
+		OBJ_26 /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_27 /* Package.swift */,
-				OBJ_28 /* Files.swift */,
+				76B1EC0022D8B5CA003E9A9F /* Package.swift */,
+				76B1EC0222D8B5D4003E9A9F /* Files.swift */,
 			);
-			name = "Files 1.11.0";
+			name = Files;
 			path = ".build/checkouts/Files.git-6739420172119258925/Sources";
 			sourceTree = SOURCE_ROOT;
 		};
@@ -353,7 +353,7 @@
 				LastUpgradeCheck = 1020;
 				TargetAttributes = {
 					"Files::Files" = {
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -405,7 +405,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_45 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +445,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_91 /* Files.swift in Sources */,
+				76B1EC0122D8B5CA003E9A9F /* Package.swift in Sources */,
+				76B1EC0322D8B5D4003E9A9F /* Files.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +748,8 @@
 		OBJ_88 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -762,6 +764,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = Files;
@@ -771,6 +774,8 @@
 		OBJ_89 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
