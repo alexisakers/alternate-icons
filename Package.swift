@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "AlternateIcons",
     dependencies: [
-        .package(url: "https://github.com/JohnSundell/Files.git", from: "1.11.0")
+        .package(url: "https://github.com/JohnSundell/Files.git", from: "2.0.0")
     ],
     targets: [
         .target(name: "AltKit", dependencies: ["Files"]),
