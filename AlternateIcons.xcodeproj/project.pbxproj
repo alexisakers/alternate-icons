@@ -22,7 +22,6 @@
 
 /* Begin PBXBuildFile section */
 		553880691F70341800B98096 /* TestFixtures in Resources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* TestFixtures */; };
-		76B1EC0122D8B5CA003E9A9F /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1EC0022D8B5CA003E9A9F /* Package.swift */; };
 		76B1EC0322D8B5D4003E9A9F /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1EC0222D8B5D4003E9A9F /* Files.swift */; };
 		OBJ_39 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_51 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* main.swift */; };
@@ -445,7 +444,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				76B1EC0122D8B5CA003E9A9F /* Package.swift in Sources */,
 				76B1EC0322D8B5D4003E9A9F /* Files.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
