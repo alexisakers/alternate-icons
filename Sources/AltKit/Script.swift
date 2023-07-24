@@ -22,6 +22,9 @@ public enum Script {
         /// The app bundle.
         let appBundle: Folder
 
+        /// Output path of the updated plist file.
+        let outputInfoPlistURL: URL
+
     }
 
 
@@ -35,8 +38,7 @@ public enum Script {
 
     public static func readArguments(resolvingAgainst basePath: String = "") throws -> Arguments {
 
-        // 1) Asset Catalog
-
+        // Check parameters
         guard let scriptInputFiles = Xcode.scriptInputFiles else {
             throw AltError.noAssetCatalog
         }
@@ -44,6 +46,20 @@ public enum Script {
         guard scriptInputFiles.count > 0 else {
             throw AltError.noAssetCatalog
         }
+
+        guard scriptInputFiles.count > 1 else {
+            throw AltError.noInfoPlist
+        }
+
+        guard let scriptOutputFiles = Xcode.scriptOutputFiles else {
+            throw AltError.noOutputPlistPath
+        }
+
+        guard scriptOutputFiles.count > 0 else {
+            throw AltError.noOutputPlistPath
+        }
+
+        // 1) Asset Catalog
 
         let assetCatalogPath = scriptInputFiles[0]
         let assetCatalogFolder = try Folder(path: basePath + assetCatalogPath)
@@ -60,16 +76,21 @@ public enum Script {
 
         // 3) Info Plist
 
-        let infoPlistPath = appBundlePath.appending(pathComponent: "Info.plist")
+        let infoPlistPath = scriptInputFiles[1]
         let infoPlistFile = try File(path: infoPlistPath)
 
         let infoPlist = try InfoPlist(file: infoPlistFile)
         let assetCatalog = AssetCatalog(folder: assetCatalogFolder)
         let appBundle = try Folder(path: appBundlePath)
 
+        // 3) Output Path
+
+        let outputInfoPlistURL = URL(filePath: scriptOutputFiles[0], directoryHint: .notDirectory)
+
         return Arguments(infoPlist: infoPlist,
                          assetCatalog: assetCatalog,
-                         appBundle: appBundle)
+                         appBundle: appBundle,
+                         outputInfoPlistURL: outputInfoPlistURL)
 
     }
 
@@ -108,7 +129,7 @@ public enum Script {
         step("Updating Info.plist with new icons")
 
         arguments.infoPlist.update(alternateIcons: alternateIconSets)
-        try arguments.infoPlist.commitChanges()
+        try arguments.infoPlist.commitChanges(to: arguments.outputInfoPlistURL)
 
     }
 
@@ -176,7 +197,7 @@ extension String {
             return self
         }
 
-        let startIndex = index(endIndex, offsetBy: -`extension`.characters.count - 1)
+        let startIndex = index(endIndex, offsetBy: -`extension`.count - 1)
         return replacingCharacters(in: startIndex..<endIndex, with: "")
     }
 

@@ -146,7 +146,7 @@ extension InfoPlist {
             return nil
         }
 
-        return alternateIconsDictionary.flatMap {
+        return alternateIconsDictionary.compactMap {
 
             guard let files = $0.value[InfoPlist.iconFilesKey] as? [String] else {
                 return nil

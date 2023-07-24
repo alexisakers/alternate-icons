@@ -39,6 +39,29 @@ enum Xcode {
 
     }
 
+    /// The output files of the script.
+    static var scriptOutputFiles: [String]? {
+
+        guard let count = get(variable: "SCRIPT_OUTPUT_FILE_COUNT").flatMap({ Int($0) }) else {
+            return nil
+        }
+
+        var outputFiles = [String]()
+
+        for index in 0 ..< count {
+
+            guard let path = get(variable: "SCRIPT_OUTPUT_FILE_\(index)") else {
+                return nil
+            }
+
+            outputFiles.append(path)
+
+        }
+
+        return outputFiles
+
+    }
+
 
     // MARK: - Utilities
 

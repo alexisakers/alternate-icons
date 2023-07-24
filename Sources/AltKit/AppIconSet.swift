@@ -14,7 +14,7 @@ class AppIconSet {
     /// An image from the set.
     ///
 
-    struct Image: Decodable {
+    struct Image: Decodable, Hashable {
 
         /// The name of the `.png` file.
         let filename: String?
@@ -27,7 +27,14 @@ class AppIconSet {
 
         /// The scale of the icon.
         let scale: String
-        
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(filename)
+            hasher.combine(idiom)
+            hasher.combine(size)
+            hasher.combine(scale)
+        }
+
     }
 
 
@@ -126,8 +133,10 @@ extension AppIconSet.Image: Equatable {
 
 extension AppIconSet: Hashable {
 
-    var hashValue: Int {
-        return ObjectIdentifier(self).hashValue
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(folder.path)
+        hasher.combine(images)
+        hasher.combine(name)
     }
 
     static func == (lhs: AppIconSet, rhs: AppIconSet) -> Bool {

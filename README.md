@@ -48,6 +48,19 @@ To set up AlternateIcons as an Xcode build phase, do the following:
     
     ~~~
     $(SRCROOT)/AlternateIcons.xcassets
+    $(SRCROOT)/MyApp/Info.plist
+    ~~~
+
+    Specify the Info.plist file to be written in Output Files:
+
+    ~~~
+    $(DERIVED_FILE_DIR)/MyApp-Generated-Info.plist
+    ~~~
+
+    Update "Info.plist File" (`GENERATE_INFOPLIST_FILE`) in the app target settings (this assumes `GENERATE_INFOPLIST_FILE` is `NO`):
+
+    ~~~
+    $(DERIVED_FILE_DIR)/MyApp-Generated-Info.plist
     ~~~
 
     **NOTE**: This Run Script phase needs to be the last build phase in your build.

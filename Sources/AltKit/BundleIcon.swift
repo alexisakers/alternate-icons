@@ -9,8 +9,9 @@ struct BundleIcon: Hashable {
     let name: String
     let files: [String]
 
-    var hashValue: Int {
-        return name.hashValue
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(files)
     }
 
     static func == (lhs: BundleIcon, rhs: BundleIcon) -> Bool {
