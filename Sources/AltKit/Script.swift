@@ -176,7 +176,7 @@ extension String {
             return self
         }
 
-        let startIndex = index(endIndex, offsetBy: -`extension`.characters.count - 1)
+        let startIndex = index(endIndex, offsetBy: -`extension`.count - 1)
         return replacingCharacters(in: startIndex..<endIndex, with: "")
     }
 
