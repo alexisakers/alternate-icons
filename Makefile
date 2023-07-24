@@ -4,7 +4,7 @@ INSTALL_PATH = /usr/local/bin/embed-alternate-icons
 build:
 	swift package clean
 	swift package update
-	swift build -c release
+	swift build -c release --arch arm64 --arch x86_64
 
 install:
 	cp -f .build/release/AlternateIcons $(INSTALL_PATH)
