@@ -21,6 +21,9 @@ enum AltError: String, LocalizedError {
     /// No app icon set named 'AppIcon' was found.
     case noPrimaryIconSet = "No app icon set named 'AppIcon' was found."
 
+    /// The Info.plist file could not be read.
+    case noOutputPlistPath = "No output path for the updated Info.plist was specified."
+
     var errorDescription: String? {
         return rawValue
     }

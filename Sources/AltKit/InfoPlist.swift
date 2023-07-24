@@ -89,9 +89,10 @@ class InfoPlist {
     /// testing purposes.
     ///
 
-    func commitChanges() throws {
+    func commitChanges(to destinationURL: URL) throws {
         let plistData = try PropertyListSerialization.data(fromPropertyList: infoDictionary, format: .xml, options: 0)
-        try file.write(data: plistData)
+
+        try plistData.write(to: destinationURL, options: .atomic)
     }
 
 }
